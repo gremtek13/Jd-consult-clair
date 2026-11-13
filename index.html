@@ -281,7 +281,7 @@ main, .index-recit { position: relative; z-index: 2; }
   .epingle .recit .chapitre:last-child { min-height: 228vh; }
   .etiquette { font-size: 0.8125rem; }
   .etiquette.or { font-size: 1.0625rem; }
-  .recit .texte { align-content: start; padding-top: 18vh; }
+  .recit .texte { align-content: start; padding-top: min(15.5vh, 132px); }
 }
 
 /* Index du récit, à droite */
@@ -701,6 +701,13 @@ function mesurer() {
   M.travail = haut(travail); M.travailCourse = travail.offsetHeight - M.h;
   M.decalage = Math.max(0, piste.scrollWidth - M.l);
   M.pourQui = haut(pourQui); M.pourQuiCourse = pourQui.offsetHeight - M.h;
+  /* Sur téléphone, la scène se loge sous le texte du récit : il lui faut le bas du texte le plus long (compté depuis
+     le haut de l'écran, là où les textes sont épinglés) et la hauteur de la barre des chapitres, en bas. Ces mesures
+     ignorent les transformations : un texte en cours de relais compte pour sa taille entière. */
+  M.basTexte = 0;
+  for (const c of chapitres) { const tx = c.querySelector('.texte'); if (tx) for (const e of tx.children) M.basTexte = Math.max(M.basTexte, e.offsetTop + e.offsetHeight); }
+  const barreChapitres = document.querySelector('.index-recit');
+  M.piedRecit = barreChapitres ? barreChapitres.offsetHeight : 0;
   for (const f of apresMesure) f();
 }
 let lVue = innerWidth, hVue = innerHeight;
@@ -1338,16 +1345,38 @@ if (renderer) {
      fait pas recalculer en plein défilement */
   const toile = renderer.domElement, voile = document.querySelector('.voile-scene');
   let L = 1, H = 1, recul = 0, axeX = centreX * 0.18;
+  /* Sur téléphone, le texte du récit occupe le haut de l'écran et la barre des chapitres le bas : la scène rangée
+     (rangées, outils reliés, écran, anneau) doit tenir entre les deux, quels que soient la taille de l'écran et la
+     longueur du texte. La caméra s'approche ou recule pour que la scène ait la bonne taille, et l'image glisse vers
+     le bas, sans changer de perspective, pour se centrer dans la place libre. Le désordre du début, lui, garde tout
+     l'écran : le cadrage ne s'installe qu'avec le premier rangement. */
+  const ETENDUE = { h: 6.0, l: 6.4 }, Z_DESORDRE = 17;
+  const cadrage = { z: Z_DESORDRE, glisse: 0 };
+  let glisseEcrite = NaN;
   const mesurerLaScene = () => {
     L = toile.clientWidth || innerWidth; H = toile.clientHeight || innerHeight;
     renderer.setSize(L, H, false);
     camera.aspect = L / H;
     /* Sur un écran moins large que haut (1024 × 768, fenêtre réduite), la caméra recule et se décale : la scène
        reste à droite du texte au lieu de passer dessous */
-    camera.position.z = mobile ? 17 : Math.min(27, Math.max(20, 30 / camera.aspect));
+    camera.position.z = mobile ? Z_DESORDRE : Math.min(27, Math.max(20, 30 / camera.aspect));
     recul = mobile ? 0 : Math.min(2, Math.max(0, (1.5 - camera.aspect) * 4));
     axeX = centreX * 0.18 - recul;
+    if (camera.view) camera.clearViewOffset();
     camera.updateProjectionMatrix();
+    if (mobile) {
+      const hautLibre = (M.basTexte || H * 0.5) + 22, basLibre = H - (M.piedRecit || 56) - 8;
+      /* la taille : autant de pixels par unité de la scène que la place libre le permet, en hauteur comme en largeur */
+      const pas = Math.min(60, Math.max(28, Math.min((basLibre - hautLibre) / ETENDUE.h, L * 0.94 / ETENDUE.l)));
+      cadrage.z = H / (2 * Math.tan(camera.fov * Math.PI / 360) * pas);
+      /* la place : là où le centre de la scène tomberait sans rien faire, et là où il doit tomber. Si la place
+         manque, la scène se cale sous le texte et déborde vers le bas plutôt que de passer dessous. */
+      camera.position.set(0, 0, cadrage.z); camera.lookAt(axeX, centreY * 0.3, 0); camera.updateMatrixWorld();
+      const centre = new THREE.Vector3(centreX, centreY, 0).project(camera);
+      const cible = Math.max((hautLibre + basLibre) / 2, hautLibre + ETENDUE.h / 2 * pas);
+      cadrage.glisse = cible - (-centre.y * 0.5 + 0.5) * H;
+      camera.position.z = Z_DESORDRE; glisseEcrite = NaN;
+    }
   };
   mesurerLaScene(); jd.apresMesure(mesurerLaScene);
   /* Programmes et textures partent à la carte graphique maintenant, pas à la première image visible */
@@ -1383,6 +1412,13 @@ if (renderer) {
     regard.lerp(pointeur, 1 - Math.exp(-dt * 2.5));
     camera.position.x = regard.x * (mobile ? 0.4 : 1.4) - recul;
     camera.position.y = -regard.y * (mobile ? 0.3 : 0.9);
+    if (mobile) {
+      /* du désordre (tout l'écran) au premier rangement (la place libre sous le texte) */
+      const k = Math.min(1, Math.max(0, s)), pose = k * k * (3 - 2 * k);
+      camera.position.z = Z_DESORDRE + (cadrage.z - Z_DESORDRE) * pose;
+      const glisse = Math.round(cadrage.glisse * pose);
+      if (glisse !== glisseEcrite) { glisseEcrite = glisse; camera.setViewOffset(L, H, 0, -glisse, L, H); }
+    }
     camera.lookAt(axeX, centreY * 0.3, 0);
     /* Le voile derrière le texte ne sert qu'au désordre du début : dès que les cartes se rangent à leur place, il se lève */
     const v = Math.round(Math.max(0, 1 - s) * 40) / 40;
