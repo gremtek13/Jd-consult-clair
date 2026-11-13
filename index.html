@@ -4,16 +4,90 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JD Consult — des outils faits pour votre équipe</title>
-<meta name="description" content="JD Consult, conseil en transformation digitale pour les TPE et PME, à Marseille. J’intègre les outils qui existent, je crée sur mesure ceux qui manquent. Premier échange gratuit.">
+<meta name="description" content="Conseil en transformation digitale pour les TPE et PME, à Marseille. J’intègre les outils qui existent, je crée ceux qui manquent. Premier échange gratuit.">
 <meta name="theme-color" content="#f4f4f7">
 <meta name="robots" content="noindex">
-<link rel="icon" href="assets/logo-jd-consult.svg">
+<meta name="color-scheme" content="light">
+<link rel="canonical" href="https://jdconsult.fr/">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<!-- L'aperçu d'un lien partagé (WhatsApp, LinkedIn, e-mail…) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="JD Consult">
+<meta property="og:url" content="https://jdarnis.fr/">
+<meta property="og:title" content="JD Consult — des outils faits pour votre équipe">
+<meta property="og:description" content="Conseil en transformation digitale pour les TPE et PME, à Marseille. J’intègre les outils qui existent, je crée sur mesure ceux qui manquent. Premier échange gratuit.">
+<meta property="og:image" content="https://jdarnis.fr/assets/partage.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="JD Consult : des outils faits pour votre équipe. Transformation digitale des TPE et PME, Marseille.">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Ce que les moteurs de recherche et les IA lisent de l'entreprise : uniquement ce que la page dit déjà -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://jdconsult.fr/#entreprise",
+      "name": "JD Consult",
+      "url": "https://jdconsult.fr/",
+      "logo": "https://jdconsult.fr/assets/logo-jd-consult.svg",
+      "image": "https://jdconsult.fr/assets/partage.jpg",
+      "description": "Conseil en transformation digitale pour les TPE et PME : intégration des outils existants et création d’outils sur mesure pour chaque métier de l’équipe (dirigeant, commercial, chantier, administration).",
+      "email": "contact@jdconsult.fr",
+      "telephone": "+33 6 14 14 94 44",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "140 chemin de la Colline Saint-Joseph",
+        "postalCode": "13009",
+        "addressLocality": "Marseille",
+        "addressRegion": "Provence-Alpes-Côte d’Azur",
+        "addressCountry": "FR"
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Marseille" },
+        { "@type": "AdministrativeArea", "name": "Bouches-du-Rhône" },
+        { "@type": "Country", "name": "France" }
+      ],
+      "knowsAbout": ["Transformation digitale", "Intégration d’outils numériques", "Logiciels sur mesure", "TPE et PME"],
+      "founder": { "@id": "https://jdconsult.fr/#jeremy-darnis" }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://jdconsult.fr/#jeremy-darnis",
+      "name": "Jérémy Darnis",
+      "jobTitle": "Consultant en transformation digitale",
+      "image": "https://jdconsult.fr/assets/photos/jeremy-darnis.webp",
+      "worksFor": { "@id": "https://jdconsult.fr/#entreprise" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://jdconsult.fr/#site",
+      "url": "https://jdconsult.fr/",
+      "name": "JD Consult",
+      "inLanguage": "fr-FR",
+      "publisher": { "@id": "https://jdconsult.fr/#entreprise" }
+    }
+  ]
+}
+</script>
 <link rel="preload" href="assets/fonts/instrument-serif.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/geist.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="modulepreload" href="assets/lib/three.module.min.js">
 <script>
-  document.documentElement.classList.add('js');
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('calme');
-  try { if (sessionStorage.getItem('jd-intro')) document.documentElement.classList.add('sans-intro'); sessionStorage.setItem('jd-intro', '1'); } catch (e) {}
+  (() => {
+    const c = document.documentElement.classList; c.add('js');
+    const calme = matchMedia('(prefers-reduced-motion: reduce)').matches; if (calme) c.add('calme');
+    try { if (sessionStorage.getItem('jd-intro')) c.add('sans-intro'); sessionStorage.setItem('jd-intro', '1'); } catch (e) {}
+    /* Quand la scène 3D peut tourner, les textes du récit restent épinglés et se relaient ; sinon ils défilent avec la page */
+    try {
+      const gl = !calme && !/[?&]capture/.test(location.search) && document.createElement('canvas').getContext('webgl2');
+      if (gl) { c.add('epingle'); const ext = gl.getExtension('WEBGL_lose_context'); if (ext) ext.loseContext(); }
+    } catch (e) {}
+  })();
 </script>
 <style>
 @font-face { font-family: "Instrument Serif"; src: url(assets/fonts/instrument-serif.woff2) format("woff2"); font-weight: 400; font-display: swap; }
@@ -35,7 +109,7 @@
   --t-hover: 200ms;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; background: var(--nuit); }
+html { -webkit-text-size-adjust: 100%; background: var(--nuit); color-scheme: light; scrollbar-color: rgba(18, 18, 24, 0.28) var(--nuit); -webkit-tap-highlight-color: transparent; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 body {
@@ -46,32 +120,20 @@ body {
 }
 ::selection { background: var(--or); color: var(--sur-or); }
 :focus-visible { outline: 2px solid var(--or); outline-offset: 4px; border-radius: 4px; }
-h1, h2, h3, p, ol, ul, figure { margin: 0; }
+h1, h2, h3, h4, p, ol, ul, figure { margin: 0; }
+p { text-wrap: pretty; }
 ol, ul { padding: 0; list-style: none; }
 a { color: inherit; }
 img { display: block; max-width: 100%; height: auto; }
 .serif { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; letter-spacing: -0.015em; line-height: 0.98; }
 .visuellement-cache { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.a-fournir { background: var(--creme); color: var(--nuit); font-size: 0.8125rem; padding: 0.1em 0.45em; border-radius: 4px; white-space: nowrap; }
-
-.bouton {
-  display: inline-flex; align-items: center; gap: 14px; min-height: 52px; padding: 0 26px;
-  border-radius: 999px; text-decoration: none; font-weight: 450; font-size: 1rem;
-  background: var(--or); color: var(--sur-or);
-  transition: transform var(--t-press) var(--ease-out), background-color var(--t-hover) ease;
-}
-.bouton svg { width: 16px; height: 16px; transition: transform var(--t-hover) var(--ease-out); }
-.bouton:active { transform: scale(0.97); }
-.bouton.fantome { background: rgba(18, 18, 24, 0.1); color: var(--creme); }
-@media (hover: hover) and (pointer: fine) {
-  .bouton:hover { background: var(--or-clair); }
-  .bouton:hover svg { transform: translateX(3px); }
-  .bouton.fantome:hover { background: rgba(18, 18, 24, 0.08); }
-}
 
 /* ── Le seuil : le logo seul, le site arrive au défilement ── */
 .seuil { position: relative; z-index: 3; height: 100vh; height: 100svh; display: grid; place-items: center; }
-.seuil__logo { will-change: transform, opacity, filter; transform-origin: 50% 50%; display: grid; justify-items: center; gap: 48px; }
+.seuil__logo { will-change: transform, opacity, filter; transform-origin: 50% 50%; display: grid; justify-items: center; gap: 48px; pointer-events: none; }
+/* Avec JavaScript, le logo ne défile pas : il reste au centre de l'écran et s'y enfonce */
+.js:not(.calme) .seuil__logo { position: fixed; left: 0; top: 0; width: 100%; height: 100vh; height: 100svh; align-content: center; }
+.seuil__logo.parti { visibility: hidden; }
 .logo-seuil { width: min(74vw, 620px); height: auto; overflow: visible; }
 .seuil .indice { font-size: 0.8125rem; color: var(--creme-doux); display: inline-flex; flex-direction: column; align-items: center; gap: 12px; }
 .seuil .indice i { width: 1px; height: 40px; background: var(--creme-doux); display: block; transform-origin: top; }
@@ -89,8 +151,16 @@ img { display: block; max-width: 100%; height: auto; }
 @keyframes filet { to { transform: none; } }
 
 /* ── Le monde en 3D, derrière toute la page ── */
-#monde { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block; transition: opacity 600ms ease; }
-#monde { -webkit-mask-image: radial-gradient(ellipse 85% 80% at 58% 50%, #000 55%, rgba(0,0,0,0.55) 100%); mask-image: radial-gradient(ellipse 85% 80% at 58% 50%, #000 55%, rgba(0,0,0,0.55) 100%); }
+#monde, .voile-scene { position: fixed; left: 0; top: 0; width: 100%; height: 100vh; height: 100lvh; z-index: 0; }
+#monde { display: block; opacity: 0; }
+/* Un voile fixe posé sur la scène. Il fond ses bords dans la nuit ; et tant que les cartes flottent partout (le
+   désordre du début), il retient celles qui passent derrière le texte, qui reste lisible. La scène règle --texte. */
+.voile-scene { pointer-events: none; background: radial-gradient(ellipse 85% 80% at 58% 50%, rgba(244, 244, 247, 0) 55%, rgba(244, 244, 247, 0.6) 100%); }
+.voile-scene::before { content: ""; position: absolute; inset: 0; opacity: var(--texte, 1); will-change: opacity; background: linear-gradient(90deg, rgba(244, 244, 247, 0.84) 0%, rgba(244, 244, 247, 0.64) 26%, rgba(244, 244, 247, 0) 54%); }
+@media (max-width: 899px) {
+  .voile-scene { background: radial-gradient(ellipse 110% 80% at 50% 58%, rgba(244, 244, 247, 0) 55%, rgba(244, 244, 247, 0.6) 100%); }
+  .voile-scene::before { background: linear-gradient(180deg, rgba(244, 244, 247, 0.84) 0%, rgba(244, 244, 247, 0.62) 30%, rgba(244, 244, 247, 0) 52%); }
+}
 .etiquettes { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 .etiquette {
   position: absolute; left: 0; top: 0; white-space: nowrap; font-size: 0.8125rem; font-weight: 400; letter-spacing: 0.01em;
@@ -109,14 +179,19 @@ main, .index-recit { position: relative; z-index: 2; }
   padding: 20px var(--marge);
   transition: transform 500ms var(--ease-out), opacity 400ms ease;
 }
-.barre.cachee { transform: translateY(-110%); }
+/* Quand la barre revient par-dessus le contenu, un voile et un flou qui s'estompent vers le bas la gardent lisible */
+.barre::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 190%; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(244, 244, 247, 0.94) 0%, rgba(244, 244, 247, 0.74) 45%, rgba(244, 244, 247, 0) 100%);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 100%); mask-image: linear-gradient(180deg, #000 0%, #000 48%, transparent 100%); }
+.barre.cachee { transform: translateY(-200%); }
 .js .barre.entree { opacity: 0; pointer-events: none; }
 .barre .logo { justify-self: start; display: block; }
 .barre .logo img { width: 141px; }
 .barre nav { display: flex; gap: clamp(20px, 2.4vw, 40px); }
 .barre nav a { position: relative; display: block; padding: 12px 0; font-size: 0.875rem; letter-spacing: 0.01em; color: rgba(18, 18, 24, 0.66); text-decoration: none; transition: color 300ms ease; }
 .barre nav a .coupe { display: block; overflow: hidden; }
-.barre nav a [data-texte] { display: block; position: relative; transition: transform 420ms var(--ease-out); }
+.barre nav a [data-texte] { display: block; position: relative; transition: transform 360ms var(--ease-out); }
 .barre nav a [data-texte]::after { content: attr(data-texte); position: absolute; left: 0; top: 100%; color: var(--or-clair); }
 .barre nav a::after { content: ""; position: absolute; left: 50%; bottom: 2px; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--or); transform: scale(0); transition: transform 400ms var(--ease-out); }
 .barre nav a[aria-current="true"] { color: var(--creme); }
@@ -131,7 +206,7 @@ main, .index-recit { position: relative; z-index: 2; }
   background: var(--creme); overflow: hidden; isolation: isolate;
   transition: color 400ms var(--ease-out), transform var(--t-press) var(--ease-out);
 }
-.appel::before { content: ""; position: absolute; inset: 0; background: var(--or); border-radius: inherit; transform: scaleX(0); transform-origin: right; transition: transform 520ms var(--ease-out); z-index: -1; }
+.appel::before { content: ""; position: absolute; inset: 0; background: var(--or); border-radius: inherit; transform: scaleX(0); transform-origin: right; transition: transform 440ms var(--ease-out); z-index: -1; }
 .appel__rond { width: 36px; height: 36px; border-radius: 50%; background: var(--or); color: var(--sur-or); display: grid; place-items: center; transition: background-color 400ms ease, color 400ms ease; }
 .appel__rond svg { width: 14px; height: 14px; transition: transform 420ms var(--ease-out); }
 .appel:active { transform: scale(0.97); }
@@ -152,11 +227,14 @@ main, .index-recit { position: relative; z-index: 2; }
 .ouverture .chapeau { max-width: 36ch; color: var(--creme); }
 .ouverture .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
 .lien-fleche { display: inline-flex; align-items: center; gap: 10px; color: var(--creme); text-decoration: none; font-size: 0.9375rem; padding: 10px 0; }
-.lien-fleche svg { width: 16px; height: 16px; transition: transform 420ms var(--ease-out); }
-@media (hover: hover) and (pointer: fine) { .lien-fleche:hover svg { transform: translateY(4px); } }
-.defiler { font-size: 0.875rem; color: var(--creme-doux); display: inline-flex; align-items: center; gap: 10px; }
-.defiler i { width: 1px; height: 28px; background: var(--creme-doux); display: block; transform-origin: top; }
-@media (prefers-reduced-motion: no-preference) { .defiler i { animation: defiler 2.2s var(--ease-in-out) infinite; } }
+.lien-fleche { transition: transform var(--t-press) var(--ease-out); }
+.lien-fleche:active { transform: scale(0.97); }
+.lien-fleche svg { width: 16px; height: 16px; transition: transform 360ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .lien-fleche:hover svg { transform: translateX(4px); }
+  .lien-fleche.vers-bas:hover svg { transform: translateY(4px); }
+  .lien-fleche.vers-dehors:hover svg { transform: translate(2px, -2px); }
+}
 @keyframes defiler { 0% { transform: scaleY(0); } 45% { transform: scaleY(1); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
 
 /* Entrées : les lignes montent derrière un masque */
@@ -172,6 +250,8 @@ main, .index-recit { position: relative; z-index: 2; }
 /* ── Le récit ── */
 .recit .chapitre { min-height: 125vh; position: relative; }
 .recit .chapitre:last-child { min-height: 210vh; }
+.epingle .recit .chapitre { min-height: 168vh; }
+.epingle .recit .chapitre:last-child { min-height: 238vh; }
 .recit .texte {
   position: sticky; top: 0; height: 100vh; height: 100svh;
   display: grid; align-content: center; gap: 22px;
@@ -183,14 +263,21 @@ main, .index-recit { position: relative; z-index: 2; }
 @media (min-width: 900px) { .recit h2 .ligne > span { white-space: nowrap; } }
 .recit p { color: var(--creme); max-width: 34ch; }
 .recit .detail { color: var(--creme-doux); font-size: 0.9375rem; }
+/* Avec la scène 3D, les textes du récit ne défilent pas : ils restent en place et se relaient, au rythme du défilement.
+   Celui qui part s'enfonce dans l'écran, le suivant en revient. Le script écrit opacité, échelle et flou. */
+.epingle .recit .texte { position: fixed; left: 0; top: 0; z-index: 1; pointer-events: none; }
+.epingle .recit .texte.actif > * { pointer-events: auto; }
+.js.epingle .recit .texte .nom, .js.epingle .recit .texte .ligne > span, .js.epingle .recit .texte p { opacity: 0; transform: none; filter: none; transition: none; transform-origin: 0 60%; will-change: transform, opacity, filter; }
 .repli { display: none; }
 .sans-3d .recit .chapitre { min-height: 0; display: grid; }
 .sans-3d .recit .texte { position: static; height: auto; padding-top: 96px; padding-bottom: 32px; }
 .sans-3d .repli { display: block; padding: 0 var(--marge) 64px; }
 .sans-3d .repli img { width: 100%; max-width: 1100px; border-radius: 6px; }
-.sans-3d #monde, .sans-3d .etiquettes, .sans-3d .index-recit { display: none; }
+.sans-3d #monde, .sans-3d .voile-scene, .sans-3d .etiquettes, .sans-3d .index-recit { display: none; }
 @media (max-width: 899px) {
   .recit .chapitre { min-height: 150vh; }
+  .epingle .recit .chapitre { min-height: 176vh; }
+  .epingle .recit .chapitre:last-child { min-height: 228vh; }
   .etiquette { font-size: 0.8125rem; }
   .etiquette.or { font-size: 1.0625rem; }
   .recit .texte { align-content: start; padding-top: 18vh; }
@@ -212,6 +299,7 @@ main, .index-recit { position: relative; z-index: 2; }
 .index-recit button[aria-current="step"] { color: var(--creme); }
 .index-recit button[aria-current="step"] i { transform: scale(1.6); background: var(--or); }
 @media (hover: hover) and (pointer: fine) { .index-recit button:hover { color: var(--creme); } }
+@media (min-width: 900px) and (max-width: 1199px) { .index-recit button { font-size: 0; gap: 0; padding: 9px 0 9px 16px; } }
 @media (max-width: 899px) {
   .index-recit { top: auto; bottom: 0; left: 0; right: 0; transform: none; display: flex; justify-content: center; gap: 0; padding: 10px 8px calc(10px + env(safe-area-inset-bottom)); background: rgba(244, 244, 247, 0.9); }
   .index-recit button { font-size: 0; padding: 0; width: 44px; height: 44px; justify-content: center; }
@@ -226,7 +314,7 @@ main, .index-recit { position: relative; z-index: 2; }
 .pour-qui .avance i { width: 28px; height: 2px; border-radius: 1px; background: rgba(18, 18, 24, 0.25); display: block; transition: background-color 400ms ease; }
 .pour-qui .avance i.actif { background: var(--or); }
 .pour-qui .fonds { position: absolute; inset: 0; }
-.pour-qui .fonds img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 900ms ease, transform 2400ms var(--ease-out); filter: grayscale(1) brightness(1.08) contrast(0.88); }
+.pour-qui .fonds img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.06); transition: opacity 900ms ease, transform 2400ms var(--ease-out); }
 .pour-qui .voile { /* taste-skill-ignore : voile neutre sous le texte, sur une photo */ position: absolute; inset: 0; background: linear-gradient(90deg, rgba(244, 244, 247, 0.95) 0%, rgba(244, 244, 247, 0.74) 55%, rgba(244, 244, 247, 0.3) 100%); }
 .pour-qui .fonds img.actif { opacity: 1; transform: none; }
 .pour-qui .contenu { position: relative; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 48px; align-items: center; }
@@ -235,17 +323,21 @@ main, .index-recit { position: relative; z-index: 2; }
 .pour-qui li button {
   font: inherit; font-family: "Instrument Serif", Georgia, serif; font-size: clamp(2.25rem, 1rem + 4vw, 5rem); line-height: 1.08; letter-spacing: -0.015em;
   color: rgba(18, 18, 24, 0.52); background: none; border: 0; padding: 0; cursor: pointer; text-align: left;
-  transition: color 500ms ease;
+  transition: color 500ms ease, transform var(--t-press) var(--ease-out);
 }
 .pour-qui li button[aria-pressed="true"] { color: var(--creme); }
 @media (hover: hover) and (pointer: fine) { .pour-qui li button:hover { color: rgba(18, 18, 24, 0.7); } }
 .pour-qui .description { display: grid; gap: 14px; align-content: center; }
-.pour-qui .description p { font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem); line-height: 1.4; }
+.pour-qui .description p { font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem); line-height: 1.4; min-height: 4.2em; transition: opacity 260ms ease, filter 260ms ease, transform 460ms var(--ease-out); }
+.pour-qui .description p.change { opacity: 0; filter: blur(3px); transform: translateY(8px); transition-duration: 150ms; }
+.pour-qui li button:active { transform: scale(0.985); transform-origin: 0 50%; }
 .pour-qui .description span { font-size: 0.8125rem; color: var(--creme-doux); }
 @media (max-width: 899px) { .pour-qui .contenu { grid-template-columns: 1fr; } }
 
 /* ── Comment je travaille : trois étapes qui défilent à l'horizontale ── */
 .travail { position: relative; background: var(--nuit); }
+.travail::before { content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 30vh; pointer-events: none; background: linear-gradient(180deg, rgba(244, 244, 247, 0) 0%, rgba(244, 244, 247, 0.6) 55%, var(--nuit) 100%); }
+.sans-3d .travail::before { display: none; }
 .travail__colle { padding: clamp(110px, 16vh, 180px) 0 clamp(80px, 12vh, 140px); display: grid; gap: clamp(40px, 7vh, 80px); }
 .travail__tete { padding: 0 var(--marge); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px 48px; }
 .travail__tete h2 { font-size: clamp(2.75rem, 1rem + 5vw, 6.5rem); }
@@ -268,7 +360,7 @@ main, .index-recit { position: relative; z-index: 2; }
   .js .etape.vu .dessin *:nth-child(n+6) { transition-delay: 450ms; }
 }
 @media (min-width: 900px) {
-  .horizontal .travail { height: 340vh; }
+  .horizontal .travail { height: 385vh; }
   .horizontal .travail__colle { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; align-content: center; padding: 0; grid-template-columns: minmax(0, 100vw); gap: clamp(48px, 8vh, 96px); }
   .horizontal .travail__piste { display: flex; gap: 0; padding: 0; width: max-content; will-change: transform; }
   .horizontal .etape { width: 78vw; padding: 0 var(--marge); grid-template-columns: auto 1fr; gap: clamp(40px, 5vw, 96px); align-items: center; }
@@ -285,17 +377,17 @@ main, .index-recit { position: relative; z-index: 2; }
 .qui__grille { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(40px, 6vw, 110px); align-items: start; }
 .portrait { margin: 0; display: grid; gap: 16px; position: sticky; top: 120px; }
 .portrait img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; border-radius: 6px; filter: grayscale(1) contrast(1.04); }
-.portrait figcaption { font-size: 0.875rem; color: var(--creme-doux); display: flex; align-items: center; gap: 12px; }
-.portrait figcaption::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--or); }
+@media (prefers-reduced-motion: no-preference) {
+  .js .portrait.apparait { opacity: 1; transform: none; filter: none; overflow: hidden; border-radius: 6px; clip-path: inset(0 0 100% 0); transition: clip-path 1300ms var(--ease-in-out) 120ms; }
+  .js .portrait.apparait.vu { clip-path: inset(0 0 0 0); }
+  .js .portrait.apparait img { transform: scale(1.14); transition: transform 2100ms var(--ease-out) 120ms; }
+  .js .portrait.apparait.vu img { transform: none; }
+}
 .qui__texte { display: grid; gap: 30px; }
 .qui__texte h2 { font-size: clamp(2.75rem, 1rem + 5vw, 6.5rem); }
 .qui .grand { font-family: "Instrument Serif", Georgia, serif; font-size: clamp(1.5rem, 1rem + 1vw, 1.875rem); line-height: 1.22; letter-spacing: -0.01em; color: var(--creme-doux); max-width: 30ch; }
 .qui .grand em { font-style: normal; color: var(--creme); }
 .qui__texte > p:not(.grand) { color: var(--creme); max-width: 46ch; }
-.faits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 12px; }
-.faits li { display: grid; gap: 6px; padding: 20px 22px; margin-right: 8px; background: var(--carte); border-radius: 6px; }
-.faits b { font-family: "Instrument Serif", Georgia, serif; font-weight: 400; font-size: clamp(1.375rem, 1rem + 0.8vw, 1.875rem); color: var(--or-clair); line-height: 1.1; }
-.faits span { font-size: 0.875rem; color: var(--creme-doux); }
 .outils { display: grid; gap: 32px; }
 .outils h3 { font-size: 0.9375rem; font-weight: 450; color: var(--or); }
 .outils__liste { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -308,8 +400,6 @@ main, .index-recit { position: relative; z-index: 2; }
 @media (max-width: 899px) {
   .qui__grille, .outils__liste { grid-template-columns: 1fr; }
   .portrait { position: static; max-width: 420px; }
-  .faits { grid-template-columns: 1fr; gap: 0; }
-  .faits li { padding-bottom: 18px; }
 }
 
 /* ── Contact ── */
@@ -337,10 +427,13 @@ main, .index-recit { position: relative; z-index: 2; }
 .appel--grand .appel__rond { width: 46px; height: 46px; }
 .appel--grand .appel__rond svg { width: 17px; height: 17px; }
 @media (hover: hover) and (pointer: fine) { .appel--grand:hover .appel__rond svg { transform: none; } }
-.pied-page { background: var(--nuit-2); padding: 0 var(--marge) 40px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 0.8125rem; color: var(--creme-doux); }
-.pied-page a { text-underline-offset: 0.25em; }
+.pied-page { position: relative; z-index: 2; background: var(--nuit-2); padding: 0 var(--marge) 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 32px; font-size: 0.8125rem; color: var(--creme-doux); }
+.pied-page__liens { display: flex; gap: clamp(20px, 3vw, 40px); }
+.pied-page a { display: inline-flex; align-items: center; gap: 8px; padding: 12px 0; color: inherit; text-decoration: none; transition: color var(--t-hover) ease; }
+.pied-page a svg { width: 12px; height: 12px; transition: transform 360ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .pied-page a:hover { color: var(--creme); } .pied-page a:hover svg { transform: translateY(-3px); } }
 
-.capture .barre, .capture main, .capture .pied-page, .capture .index-recit, .capture .intro { display: none !important; }
+.capture .barre, .capture main, .capture .pied-page, .capture .index-recit, .capture .voile-scene { display: none !important; }
 </style>
 </head>
 <body>
@@ -348,6 +441,7 @@ main, .index-recit { position: relative; z-index: 2; }
 
 
 <canvas id="monde" aria-hidden="true"></canvas>
+<div class="voile-scene" aria-hidden="true"></div>
 <div class="etiquettes" aria-hidden="true"></div>
 
 <header class="barre">
@@ -381,7 +475,7 @@ main, .index-recit { position: relative; z-index: 2; }
     <div class="pied">
       <p class="chapeau apparait">Conseil en transformation digitale pour les TPE et PME, à Marseille. J’intègre les outils qui existent, je crée sur mesure ceux qui manquent.</p>
       <div class="actions apparait" style="--i:1">
-        <a class="lien-fleche" href="#recit">Voir ce que je fais <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v11M4 9l4 4 4-4"/></svg></a>
+        <a class="lien-fleche vers-bas" href="#recit">Voir ce que je fais <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2v11M4 9l4 4 4-4"/></svg></a>
       </div>
     </div>
   </section>
@@ -392,9 +486,9 @@ main, .index-recit { position: relative; z-index: 2; }
       <div class="texte">
         <span class="nom apparait">Le constat</span>
         <h2 class="serif monte"><span class="ligne"><span>Chacun bricole</span></span><span class="ligne" style="--i:1"><span>dans son coin.</span></span></h2>
-        <p class="apparait" style="--i:1">Un carnet, des groupes de discussion, un tableur par personne et un logiciel acheté mais jamais ouvert. L’information existe&nbsp;; personne ne la retrouve.</p>
+        <p class="apparait" style="--i:1">Un carnet, des groupes de discussion, un tableur par personne et un logiciel acheté mais jamais ouvert. L’information existe&#8239;; personne ne la retrouve.</p>
       </div>
-      <figure class="repli"><img src="assets/scene/etat-1.webp" width="1600" height="900" loading="lazy" alt="Des dizaines de fragments d’écrans, de documents et de messages flottent en désordre dans le noir."></figure>
+      <figure class="repli"><img src="assets/scene/etat-1.webp" width="1600" height="900" loading="lazy" alt="Des dizaines de fragments d’écrans, de documents et de messages flottent en désordre."></figure>
     </article>
     <article class="chapitre" data-etat="1">
       <div class="texte">
@@ -411,7 +505,7 @@ main, .index-recit { position: relative; z-index: 2; }
         <h2 class="serif monte"><span class="ligne"><span>Connecter ce qui</span></span><span class="ligne" style="--i:1"><span>existe déjà.</span></span></h2>
         <p class="apparait" style="--i:1">Souvent, l’outil qu’il vous faut existe déjà. Je le choisis avec vous, je le règle et je le relie aux autres, pour que chacun n’ait qu’un seul accès.</p>
       </div>
-      <figure class="repli"><img src="assets/scene/etat-3.webp" width="1600" height="900" loading="lazy" alt="Cinq groupes de fragments, cinq outils, reliés par des fils d’or à un même centre."></figure>
+      <figure class="repli"><img src="assets/scene/etat-3.webp" width="1600" height="900" loading="lazy" alt="Cinq groupes de fragments, cinq outils, reliés par des fils bleus à un même centre."></figure>
     </article>
     <article class="chapitre" data-etat="3">
       <div class="texte">
@@ -427,7 +521,7 @@ main, .index-recit { position: relative; z-index: 2; }
         <h2 class="serif monte"><span class="ligne"><span>Chacun son outil,</span></span><span class="ligne" style="--i:1"><span>tout est relié.</span></span></h2>
         <p class="apparait" style="--i:1">Le dirigeant voit où il en est, le commercial suit ses clients, l’équipe de chantier a son planning en poche. Et je forme chacun à s’en servir.</p>
       </div>
-      <figure class="repli"><img src="assets/scene/etat-5.webp" width="1600" height="900" loading="lazy" alt="Les fragments forment un anneau d’or, le cercle du logo JD Consult."></figure>
+      <figure class="repli"><img src="assets/scene/etat-5.webp" width="1600" height="900" loading="lazy" alt="Les fragments forment un anneau bleu, le cercle du logo JD Consult."></figure>
     </article>
   </section>
 
@@ -528,7 +622,7 @@ main, .index-recit { position: relative; z-index: 2; }
         <article class="outil apparait">
           <h4 class="serif">JD precompta</h4>
           <p>Une application web pour la précomptabilité d’un cabinet comptable et de ses clients&nbsp;: pièces déposées et lues automatiquement, rapprochement bancaire, factures et facture électronique, déclarations préparées.</p>
-          <a class="lien-fleche" href="https://compta.jdarnis.fr" target="_blank" rel="noopener">compta.jdarnis.fr <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M6 3h7v7"/></svg></a>
+          <a class="lien-fleche vers-dehors" href="https://compta.jdarnis.fr" target="_blank" rel="noopener">compta.jdarnis.fr <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13L13 3M6 3h7v7"/></svg></a>
         </article>
         <article class="outil apparait" style="--i:1">
           <h4 class="serif">JD Factu</h4>
@@ -553,8 +647,11 @@ main, .index-recit { position: relative; z-index: 2; }
   </section>
 </main>
 <footer class="pied-page">
-  <span>JD Consult · Marseille · <a href="mentions-legales.html">Mentions légales</a></span>
-  <span>Photos d’ambiance (Unsplash)&nbsp;: Todd Quackenbush, Jeff Sheldon, Karl Fredrickson, Alejandro Escamilla.</span>
+  <span>© <span data-annee>2026</span> JD Consult · Marseille</span>
+  <span class="pied-page__liens">
+    <a href="mentions-legales.html">Mentions légales</a>
+    <a href="#haut">Haut de page <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M8 14V3M4 7l4-4 4 4"/></svg></a>
+  </span>
 </footer>
 
 <script src="assets/lib/lenis.min.js" defer></script>
@@ -564,93 +661,220 @@ const racine = document.documentElement;
 const params = new URLSearchParams(location.search);
 const capture = params.has('capture');
 const calme = racine.classList.contains('calme');
-/* ── Entrées des textes ── */
-const aObserver = document.querySelectorAll('.monte, .apparait, .etape');
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const borne = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lisse = (t) => t * t * (3 - 2 * t);
+/* Rejoindre une cible en douceur (amorti critique) : départ et arrivée sans à-coup, jamais de dépassement, et une
+   vitesse plafonnée — un grand coup de molette ne fait pas tout défiler d'un trait. e = { x, v }. */
+const amortir = (e, cible, temps, vmax, dt) => {
+  const w = 2 / temps, x = w * dt, k = 1 / (1 + x + 0.48 * x * x + 0.235 * x * x * x);
+  const ecart = borne(e.x - cible, -vmax * temps, vmax * temps), but = e.x - ecart;
+  const t = (e.v + w * ecart) * dt;
+  e.v = (e.v - w * t) * k;
+  let suite = but + (ecart + t) * k;
+  if ((cible - e.x > 0) === (suite > cible) || Math.abs(cible - suite) < 0.0002) { suite = cible; e.v = 0; }
+  e.x = suite;
+  return suite;
+};
+
+/* ── Entrées des textes : une fois, quand ils arrivent à l'écran ── */
+const aObserver = $$('.monte, .apparait, .etape');
 if ('IntersectionObserver' in window && !capture) {
   const io = new IntersectionObserver((es) => { for (const e of es) if (e.isIntersecting) { e.target.classList.add('vu'); io.unobserve(e.target); } }, { rootMargin: '0px 0px -8% 0px' });
   aObserver.forEach((el) => io.observe(el));
 } else aObserver.forEach((el) => el.classList.add('vu'));
 
-/* ── Pour qui : la liste qui s'éclaire ── */
-const metiers = [...document.querySelectorAll('.pour-qui li button')];
-const fonds = [...document.querySelectorAll('.pour-qui .fonds img')];
-const description = document.querySelector('.pour-qui .description p');
+/* ── Ce que la page sait d'elle-même. Mesuré une fois, puis à chaque vrai redimensionnement : jamais pendant le
+   défilement, où lire une position oblige le navigateur à tout recalculer. ── */
+const seuil = $('.seuil__logo'), barre = $('.barre'), recit = $('.recit'), travail = $('.travail'), piste = $('.travail__piste');
+const avance = $('.travail__avance i'), etapes = $$('.etape'), pourQui = $('.pour-qui'), chapitres = $$('.recit .chapitre');
+const M = { l: innerWidth, h: innerHeight, ancres: [] };
+const apresMesure = [];
+let aMesurer = true;
+function mesurer() {
+  const y = scrollY, haut = (el) => el.getBoundingClientRect().top + y;
+  M.l = innerWidth; M.h = innerHeight;
+  M.recit = haut(recit);
+  M.ancres = chapitres.map((c) => haut(c) + c.offsetHeight * 0.33 - M.h * 0.15);
+  M.travail = haut(travail); M.travailCourse = travail.offsetHeight - M.h;
+  M.decalage = Math.max(0, piste.scrollWidth - M.l);
+  M.pourQui = haut(pourQui); M.pourQuiCourse = pourQui.offsetHeight - M.h;
+  for (const f of apresMesure) f();
+}
+let lVue = innerWidth, hVue = innerHeight;
+const tactile = matchMedia('(pointer: coarse)').matches;
+addEventListener('resize', () => {
+  /* Sur téléphone, la barre d'adresse se replie et se déplie en défilant : la hauteur change, la page non */
+  if (tactile && innerWidth === lVue && Math.abs(innerHeight - hVue) < 180) return;
+  lVue = innerWidth; hVue = innerHeight; aMesurer = true;
+});
+addEventListener('load', () => { aMesurer = true; });
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { aMesurer = true; });
+if ('ResizeObserver' in window) new ResizeObserver(() => { aMesurer = true; }).observe(document.body);
+
+/* ── Défilement fluide ── */
+let lenis = null;
+function lancerLenis() {
+  if (calme || capture || !window.Lenis) return;
+  lenis = window.lenis = new window.Lenis({ lerp: 0.085, smoothWheel: true });
+}
+if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', lancerLenis); else lancerLenis();
+const aller = (cible, duree = 1.4) => {
+  if (lenis) lenis.scrollTo(cible, { duration: duree });
+  else if (typeof cible === 'number') scrollTo({ top: cible, behavior: calme ? 'auto' : 'smooth' });
+  else cible.scrollIntoView({ behavior: calme ? 'auto' : 'smooth' });
+};
+$$('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
+  const cible = $(a.getAttribute('href'));
+  /* Le lien vers le récit arrive là où son premier texte est en place, pas au bord de la section */
+  if (cible) { e.preventDefault(); aller(cible === recit && epingle() ? M.ancres[0] + 2 : cible); }
+}));
+
+/* ── Le récit : où l'on en est, de 0 (le constat) à 4 (le résultat). Le défilement donne la cible ; l'état la rejoint
+   en douceur, pour que la scène et les textes ne suivent jamais un à-coup de la molette ou du doigt. ── */
+const R = { s: -1, cible: 0, entree: 0, fondu: 1 };
+const elan = { x: 0, v: 0 };
+const etatDuDefilement = (y) => {
+  const a = M.ancres;
+  if (!a.length || y <= a[0]) return 0;
+  for (let k = 0; k < a.length - 1; k++) {
+    if (y < a[k + 1]) return k + lisse(borne(((y - a[k]) / (a[k + 1] - a[k]) - 0.16) / 0.68));
+  }
+  return a.length - 1;
+};
+const index = $('.index-recit'), boutonsIndex = $$('button', index);
+boutonsIndex.forEach((b, k) => b.addEventListener('click', () => aller(M.ancres[k] + 2, 1.6)));
+let courant = -1, indexVisible = false;
+
+/* En mode épinglé, les textes des chapitres ne défilent plus : ils restent à leur place et se relaient. Celui qui part
+   s'enfonce dans l'écran, le suivant en revient — comme le logo au début. */
+const epingle = () => racine.classList.contains('epingle');
+const textes = chapitres.map((c) => { const el = $('.texte', c); return { el, pieces: $$('.nom, h2 .ligne > span, p', el), w: -1 }; });
+function ecrireLeRecit(y) {
+  if (!epingle()) return;
+  const h = M.h, dernierTexte = textes.length - 1;
+  const arrivee = borne((y - (M.recit - h * 0.2)) / (h * 0.3));     /* le premier attend que l'ouverture soit partie */
+  const depart = borne((M.travail - h * 0.68 - y) / (h * 0.3));     /* le dernier s'efface quand la méthode arrive */
+  textes.forEach((tx, i) => {
+    let w = borne((0.5 - Math.abs(R.s - i)) / 0.32);
+    if (i === 0) w = Math.min(w, arrivee);
+    if (i === dernierTexte) w = Math.min(w, depart);
+    w = Math.round(w * 1000) / 1000;
+    if (w === tx.w) return;
+    tx.w = w;
+    tx.el.classList.toggle('actif', w > 0.6);
+    const n = tx.pieces.length, pas = 0.1, etendue = 1 + pas * (n - 1);
+    tx.pieces.forEach((el, j) => {
+      const p = lisse(borne(w * etendue - pas * j));
+      el.style.opacity = p.toFixed(3);
+      el.style.transform = p > 0.999 ? '' : `scale(${(0.86 + 0.14 * p).toFixed(4)})`;
+      el.style.filter = p > 0.98 ? '' : `blur(${((1 - p) * 7).toFixed(2)}px)`;
+    });
+  });
+}
+function suivreLeRecit(y, dt) {
+  const h = M.h;
+  R.cible = capture ? borne((parseInt(params.get('capture'), 10) || 1) - 1, 0, 4) : etatDuDefilement(y);
+  if (R.s < 0 || calme || capture) { elan.x = R.cible; elan.v = 0; }
+  R.s = amortir(elan, R.cible, 0.42, 1.5, dt);
+  R.entree = capture ? 1 : borne(y / (h * 0.85));
+  R.fondu = capture ? 1 : borne(1 - (y + h * 0.55 - M.travail) / (h * 0.45));
+  const c = Math.round(R.s);
+  if (c !== courant) { courant = c; boutonsIndex.forEach((b, k) => { if (k === c) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); }); }
+  const vu = !capture && y > M.ancres[0] - h * 0.6 && y < M.travail - h * 0.4;
+  if (vu !== indexVisible) { indexVisible = vu; index.classList.toggle('visible', vu); }
+  ecrireLeRecit(y);
+}
+
+/* ── Pour qui : la liste qui s'éclaire, métier par métier ── */
+const metiers = $$('.pour-qui li button'), fonds = $$('.pour-qui .fonds img'), traits = $$('.pour-qui .avance i');
+const description = $('.pour-qui .description p');
+let metierCourant = 0, relais = 0, photosPretes = false;
 const choisir = (i) => {
   metiers.forEach((b, k) => b.setAttribute('aria-pressed', String(k === i)));
   fonds.forEach((f, k) => f.classList.toggle('actif', k === i));
-  description.textContent = metiers[i].dataset.texte;
+  traits.forEach((t, k) => t.classList.toggle('actif', k === i));
+  /* Le texte ne saute pas d'une phrase à l'autre : il s'efface, change, puis revient */
+  clearTimeout(relais);
+  if (calme) { description.textContent = metiers[i].dataset.texte; return; }
+  description.classList.add('change');
+  relais = setTimeout(() => { description.textContent = metiers[i].dataset.texte; description.classList.remove('change'); }, 170);
 };
-metiers.forEach((b, i) => {
-  b.addEventListener('click', () => {
-    const pq = document.querySelector('.pour-qui');
-    const cible = pq.getBoundingClientRect().top + scrollY + (pq.offsetHeight - innerHeight) * (i + 0.5) / metiers.length;
-    if (window.lenis) window.lenis.scrollTo(cible, { duration: 1.2 }); else scrollTo({ top: cible, behavior: calme ? 'auto' : 'smooth' });
-  });
-});
+metiers.forEach((b, i) => b.addEventListener('click', () => aller(M.pourQui + M.pourQuiCourse * (i + 0.5) / metiers.length, 1.2)));
 
-/* ── Défilement fluide ── */
-function lancerLenis() {
-  if (calme || capture || !window.Lenis) return;
-  const lenis = new window.Lenis({ lerp: 0.085, smoothWheel: true });
-  window.lenis = lenis;
-  const boucle = (t) => { lenis.raf(t); requestAnimationFrame(boucle); };
-  requestAnimationFrame(boucle);
-  document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
-    const cible = document.querySelector(a.getAttribute('href'));
-    if (cible) { e.preventDefault(); lenis.scrollTo(cible, { duration: 1.4 }); }
-  }));
-}
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', lancerLenis); else lancerLenis();
-
-/* Au défilement : le logo s'efface, la barre arrive, et « Pour qui » avance métier par métier */
-const seuil = document.querySelector('.seuil__logo');
-const barre = document.querySelector('.barre');
-const pourQui = document.querySelector('.pour-qui');
-const traits = [...document.querySelectorAll('.pour-qui .avance i')];
-let dernierY = scrollY, metierCourant = 0, demande = false;
+/* ── Au défilement : le logo s'enfonce, la barre arrive, la méthode glisse, « Pour qui » avance ── */
+const horizontal = matchMedia('(min-width: 900px)');
+const reglerTravail = () => { racine.classList.toggle('horizontal', horizontal.matches && !calme); piste.style.transform = ''; aMesurer = true; };
+reglerTravail(); horizontal.addEventListener('change', reglerTravail);
+let yPrec = scrollY, seuilEcrit = -1, pisteEcrite = -1;
 barre.classList.toggle('entree', scrollY < innerHeight * 0.5);
-function auDefilement() {
-  demande = false;
-  const y = scrollY, h = innerHeight;
-  const p = Math.min(1, y / (h * 0.7));
+function auDefilement(y) {
+  const h = M.h;
   /* Le logo s'enfonce dans l'écran, à sa place, pendant que les cartes en jaillissent */
-  const e = p * p * (3 - 2 * p);
-  seuil.style.opacity = String(Math.max(0, 1 - e * 1.15));
-  if (!calme) {
-    seuil.style.transform = `translateY(${Math.min(y, h).toFixed(1)}px) scale(${(1 - e * 0.72).toFixed(4)})`;
-    seuil.style.filter = e > 0.01 ? `blur(${(e * 6).toFixed(2)}px)` : '';
+  const e = Math.round(lisse(borne(y / (h * 0.7))) * 1000) / 1000;
+  if (e !== seuilEcrit) {
+    seuilEcrit = e;
+    seuil.style.opacity = String(Math.max(0, 1 - e * 1.15).toFixed(3));
+    if (!calme) {
+      seuil.style.transform = e > 0 ? `scale(${(1 - e * 0.72).toFixed(4)})` : '';
+      seuil.style.filter = e > 0.01 ? `blur(${(e * 6).toFixed(2)}px)` : '';
+      seuil.classList.toggle('parti', e >= 1);
+    }
   }
   barre.classList.toggle('entree', y < h * 0.5);
-  if (y > dernierY + 4 && y > h) barre.classList.add('cachee');
-  else if (y < dernierY - 4) barre.classList.remove('cachee');
-  dernierY = y;
-  auDefilementTravail(y, h);
-  const haut = pourQui.getBoundingClientRect().top + y, course = pourQui.offsetHeight - h;
-  const q = Math.min(0.999, Math.max(0, (y - haut) / course));
-  const i = Math.floor(q * metiers.length);
-  if (i !== metierCourant) { metierCourant = i; choisir(i); traits.forEach((t, k) => t.classList.toggle('actif', k === i)); }
+  if (y > yPrec + 4 && y > h) barre.classList.add('cachee');
+  else if (y < yPrec - 4) barre.classList.remove('cachee');
+  yPrec = y;
+
+  if (racine.classList.contains('horizontal')) {
+    /* Un temps d'arrêt au début et à la fin : la première étape se lit avant de partir, la dernière reste */
+    const q = borne((borne((y - M.travail) / M.travailCourse) - 0.05) / 0.9);
+    const x = Math.round(q * M.decalage * 10) / 10;
+    if (x !== pisteEcrite) {
+      pisteEcrite = x;
+      piste.style.transform = `translate3d(${-x}px, 0, 0)`;
+      avance.style.transform = `scaleX(${q.toFixed(4)})`;
+      etapes.forEach((el, k) => { if (q > k / etapes.length - 0.12) el.classList.add('vu'); });
+    }
+  }
+
+  /* Les photos de « Pour qui » se décodent avant d'arriver à l'écran : le premier fondu ne saccade pas */
+  if (!photosPretes && y > M.pourQui - h * 2.5) {
+    photosPretes = true;
+    fonds.forEach((f) => { f.loading = 'eager'; if (f.decode) f.decode().catch(() => {}); });
+  }
+  const i = Math.floor(borne((y - M.pourQui) / M.pourQuiCourse, 0, 0.999) * metiers.length);
+  if (i !== metierCourant) { metierCourant = i; choisir(i); }
 }
-const travail = document.querySelector('.travail');
-const piste = document.querySelector('.travail__piste');
-const avance = document.querySelector('.travail__avance i');
-const etapes = [...document.querySelectorAll('.etape')];
-const horizontal = matchMedia('(min-width: 900px)');
-const reglerTravail = () => racine.classList.toggle('horizontal', horizontal.matches && !calme);
-reglerTravail(); horizontal.addEventListener('change', () => { reglerTravail(); piste.style.transform = ''; });
-function auDefilementTravail(y, h) {
-  if (!racine.classList.contains('horizontal')) return;
-  const haut = travail.getBoundingClientRect().top + y, course = travail.offsetHeight - h;
-  const q = Math.min(1, Math.max(0, (y - haut) / course));
-  const decalage = Math.max(0, piste.scrollWidth - innerWidth);
-  piste.style.transform = `translateX(${(-q * decalage).toFixed(1)}px)`;
-  avance.style.transform = `scaleX(${q.toFixed(4)})`;
-  etapes.forEach((el, k) => { if (q > k / etapes.length - 0.12) el.classList.add('vu'); });
+
+/* ── Une seule boucle pour toute la page. À chaque image, dans l'ordre : le défilement avance, la page mesure ce
+   qui a changé, les textes suivent, puis la scène 3D se dessine. Tout bouge dans la même image, sans décalage. ── */
+const aChaqueImage = [];
+let tPrec = performance.now(), yVu = -1;
+function image(t) {
+  const dt = borne((t - tPrec) / 1000, 0.001, 0.1); tPrec = t;   /* au-delà d'un dixième de seconde (onglet resté en arrière-plan), le temps ne saute pas */
+  if (lenis) lenis.raf(t);
+  const mesure = aMesurer;
+  if (mesure) { aMesurer = false; mesurer(); }
+  const y = scrollY;
+  suivreLeRecit(y, dt);
+  if (y !== yVu || mesure) { yVu = y; auDefilement(y); }
+  for (const f of aChaqueImage) f(t, dt, y);
+  requestAnimationFrame(image);
 }
-addEventListener('scroll', () => { if (!demande) { demande = true; requestAnimationFrame(auDefilement); } }, { passive: true });
-auDefilement();
+/* Sans la scène (bibliothèque absente, WebGL refusé) : les chapitres reprennent leur place dans la page, avec leurs images */
+const sansScene = () => {
+  racine.classList.add('sans-3d'); racine.classList.remove('epingle');
+  textes.forEach((tx) => { tx.w = -1; tx.el.classList.remove('actif'); tx.pieces.forEach((el) => { el.style.opacity = el.style.transform = el.style.filter = ''; }); });
+  aMesurer = true;
+};
+window.__jd = { M, R, capture, calme, amortir, aChaqueImage: (f) => aChaqueImage.push(f), apresMesure: (f) => apresMesure.push(f), sansScene };
+requestAnimationFrame(image);
+addEventListener('load', () => setTimeout(() => { if (!window.__monde && !calme) sansScene(); }, 2500));
 
 /* La navigation marque la section en cours */
-const liensNav = [...document.querySelectorAll('.barre nav a')];
+const liensNav = $$('.barre nav a');
 if ('IntersectionObserver' in window) {
   const ioNav = new IntersectionObserver((es) => {
     for (const e of es) if (e.isIntersecting) liensNav.forEach((a) => { if (a.getAttribute('href') === '#' + e.target.id) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); });
@@ -658,44 +882,46 @@ if ('IntersectionObserver' in window) {
   ['recit', 'methode', 'pour-qui', 'qui', 'contact'].forEach((id) => { const el = document.getElementById(id); if (el) ioNav.observe(el); });
 }
 /* Copier l'adresse : un repli quand aucune messagerie ne s'ouvre */
-const copier = document.querySelector('.copier');
+const copier = $('.copier');
 copier.addEventListener('click', async () => {
-  const texte = copier.querySelector('.copier__texte');
+  const texte = $('.copier__texte', copier);
   try { await navigator.clipboard.writeText(copier.dataset.adresse); texte.textContent = 'Adresse copiée : ' + copier.dataset.adresse; }
   catch (e) { texte.textContent = copier.dataset.adresse; }
   setTimeout(() => { texte.textContent = 'Copier l’adresse e-mail'; }, 4000);
 });
 if ('IntersectionObserver' in window) {
   const io2 = new IntersectionObserver(([e]) => { if (e.isIntersecting) { e.target.classList.add('vu'); io2.disconnect(); } }, { threshold: 0.3 });
-  io2.observe(document.querySelector('.contact'));
-} else document.querySelector('.contact').classList.add('vu');
-/* Sans 3D (bibliothèque absente, WebGL refusé) : la page montre les images du récit */
-addEventListener('load', () => setTimeout(() => { if (!window.__monde) racine.classList.add('sans-3d'); }, 1500));
+  io2.observe($('.contact'));
+} else $('.contact').classList.add('vu');
+const annee = $('[data-annee]'); if (annee) annee.textContent = new Date().getFullYear();
 })();
 </script>
 <script type="module">
 import * as THREE from './assets/lib/three.module.min.js';
 
 window.__monde = true;
+const jd = window.__jd, { M, R, capture, calme } = jd;
 const racine = document.documentElement;
-const params = new URLSearchParams(location.search);
-const capture = params.has('capture');
-const calme = racine.classList.contains('calme');
 const mobile = matchMedia('(max-width: 899px)').matches;
 matchMedia('(max-width: 899px)').addEventListener('change', () => location.reload());
+/* La scène se construit par petits morceaux, une image à la fois : le tracé du logo, pendant ce temps, ne saccade pas */
+const souffler = () => new Promise((suite) => requestAnimationFrame(suite));
 
 /* ── Le monde en 3D ── */
-const COUL = { nuit: 0xf4f4f7, creme: '#121218', encre: '#2a2620', or: '#2842d6', orClair: '#1f34b0', doux: '#b9b1a1' };
+const COUL = { nuit: 0xf4f4f7, creme: '#121218', encre: '#2a2620', or: '#2842d6', orClair: '#1f34b0', doux: '#5a5a6a' };
 let renderer;
 try {
   if (calme && !capture) throw new Error('mouvement réduit');
   renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('monde'), antialias: true, powerPreference: 'high-performance' });
 } catch (e) {
-  racine.classList.add('sans-3d');
+  jd.sansScene();
 }
 
 if (renderer) {
-  renderer.setPixelRatio(Math.min(devicePixelRatio, mobile ? 1.5 : 2));
+  /* Net jusqu'à deux pixels par point ; si la machine peine, la boucle de rendu baisse cette finesse d'elle-même */
+  let finesse = capture ? 1 : Math.min(devicePixelRatio || 1, 2);
+  const finesseMin = mobile ? Math.min(finesse, 1.5) : 1;
+  renderer.setPixelRatio(finesse);
   renderer.setClearColor(COUL.nuit, 1);
   const scene = new THREE.Scene();
   scene.fog = new THREE.Fog(COUL.nuit, 22, 60);
@@ -707,6 +933,8 @@ if (renderer) {
   const C = { fondHaut: '#ffffff', fondBas: '#f6f6f9', fond2: 'rgba(18,18,24,0.04)', fond3: 'rgba(18,18,24,0.075)', trait: 'rgba(18,18,24,0.09)', texte: '#121218', doux: 'rgba(18,18,24,0.58)', pale: 'rgba(18,18,24,0.38)', or: '#2842d6', orClair: '#1f34b0', orFond: 'rgba(40,66,214,0.11)', vert: '#119c74', vertFond: 'rgba(17,156,116,0.12)', sombre: '#ffffff' };
   const F = (t, poids = 400) => `${poids} ${t}px Geist, system-ui, sans-serif`;
   const SERIF = (t) => `400 ${t}px "Instrument Serif", Georgia, serif`;
+  /* L'or éclaire : ce qui est doré porte un halo, peint une fois dans la carte (aucun calcul pendant l'animation) */
+  const luire = (g, dessin, force = 0.5, flou = 28) => { g.save(); g.shadowColor = `rgba(40, 66, 214, ${force * 0.34})`; g.shadowBlur = flou; dessin(); g.restore(); };
   const ANISO = renderer.capabilities.getMaxAnisotropy();
   /* Un texte qui ne tient pas se coupe sur un « … », jamais par-dessus son voisin */
   const ajuste = (g, txt, max) => { if (g.measureText(txt).width <= max) return txt; let s = txt; while (s.length > 1 && g.measureText(s + '…').width > max) s = s.slice(0, -1); return s.trimEnd() + '…'; };
@@ -723,10 +951,10 @@ if (renderer) {
     const forme = (m = 0, rr = r) => { g.beginPath(); g.roundRect(m, m, W - 2 * m, H - 2 * m, Math.max(0, rr - m)); };
     /* Le fond : un dégradé de haut en bas, et une lueur chaude qui vient d'en haut à gauche */
     const fd = g.createLinearGradient(0, 0, 0, H); fd.addColorStop(0, opts.fondHaut || C.fondHaut); fd.addColorStop(1, opts.fondBas || C.fondBas);
-    forme(); g.fillStyle = fd; g.fill();
+    g.fillStyle = fd; g.fillRect(0, 0, W, H);
     g.save(); forme(); g.clip();
     const lu = g.createRadialGradient(W * 0.12, -H * 0.1, 0, W * 0.12, -H * 0.1, Math.max(W, H) * 0.95);
-    lu.addColorStop(0, opts.lueur || 'rgba(110,130,255,0.09)'); lu.addColorStop(1, 'rgba(0,0,0,0)'); g.fillStyle = lu; g.fillRect(0, 0, W, H);
+    lu.addColorStop(0, opts.lueur || 'rgba(110,130,255,0.09)'); lu.addColorStop(1, 'rgba(110,130,255,0)'); g.fillStyle = lu; g.fillRect(0, 0, W, H);
     g.textBaseline = 'middle'; g.textAlign = 'left';
     if (titre) {
       g.fillStyle = C.texte; g.font = F(50, 500); g.fillText(titre, 56, 88);
@@ -741,38 +969,38 @@ if (renderer) {
     g.lineWidth = 5; g.strokeStyle = ar; forme(2.5); g.stroke();
     const re = g.createLinearGradient(0, 0, 0, Math.min(H, 260)); re.addColorStop(0, 'rgba(255,255,255,0.07)'); re.addColorStop(1, 'rgba(255,255,255,0)');
     g.save(); forme(); g.clip(); g.lineWidth = 2; g.strokeStyle = re; forme(7); g.stroke(); g.restore();
-    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO;
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO; renderer.initTexture(t);
     return { t, l, h, r };
   }
 
-  const modeles = [
-    fenetre(1.7, 1.06, 'Planning', 'Sem. 43', (g, W, H) => {
+  const recettes = [
+    () => fenetre(1.7, 1.06, 'Planning', 'Sem. 43', (g, W, H) => {
       const jours = ['Lun.', 'Mar.', 'Mer.', 'Jeu.'], lc = (W - 112) / 4;
       jours.forEach((j, k) => { g.fillStyle = k === 2 ? C.orClair : C.doux; g.font = F(36, k === 2 ? 500 : 400); g.fillText(j, 56 + k * lc, 222); if (k) { g.fillStyle = C.trait; g.fillRect(56 + k * lc - 12, 256, 2, H - 290); } });
       [[0, 0, 2, 'Pose', 'or'], [1, 1, 1, 'Atelier', 'neutre'], [2, 0, 1, 'Achats', 'vert'], [3, 0, 2, 'Visite', 'orPale'], [1, 0, 1, 'Devis', 'neutre']].forEach(([k, y, d, txt, ton]) => {
         const x = 56 + k * lc, yy = 270 + y * 172, w = lc - 26, hh = d * 172 - 18;
-        g.fillStyle = { or: C.or, neutre: C.fond3, vert: C.vertFond, orPale: C.orFond }[ton]; g.beginPath(); g.roundRect(x, yy, w, hh, 20); g.fill();
+        g.fillStyle = { or: C.or, neutre: C.fond3, vert: C.vertFond, orPale: C.orFond }[ton]; g.beginPath(); g.roundRect(x, yy, w, hh, 20); if (ton === 'or') luire(g, () => g.fill(), 0.42, 36); else g.fill();
         if (ton !== 'or') { g.fillStyle = ton === 'vert' ? C.vert : ton === 'orPale' ? C.or : C.pale; g.beginPath(); g.roundRect(x, yy, 9, hh, [20, 0, 0, 20]); g.fill(); }
         g.fillStyle = ton === 'or' ? C.sombre : C.texte; g.font = F(38, 500); g.fillText(ajuste(g, txt, w - 44), x + 28, yy + 50);
       });
     }),
-    fenetre(1.5, 1.0, 'Chiffre d’affaires', '6 mois', (g, W, H) => {
+    () => fenetre(1.5, 1.0, 'Chiffre d’affaires', '6 mois', (g, W, H) => {
       g.fillStyle = C.texte; g.font = SERIF(176); g.textBaseline = 'alphabetic'; g.fillText('+ 18 %', 50, 346); g.textBaseline = 'middle';
       const v = [0.3, 0.48, 0.34, 0.18, 0.6, 0.9], x0 = 64, l = W - 128, y0 = H - 70, ht = H - 470;
       const pt = (k) => [x0 + k * l / 5, y0 - v[k] * ht];
       const aire = g.createLinearGradient(0, y0 - ht, 0, y0); aire.addColorStop(0, 'rgba(40,66,214,0.25)'); aire.addColorStop(1, 'rgba(40,66,214,0)');
       g.beginPath(); g.moveTo(x0, y0); v.forEach((_, k) => g.lineTo(...pt(k))); g.lineTo(x0 + l, y0); g.closePath(); g.fillStyle = aire; g.fill();
-      g.beginPath(); v.forEach((_, k) => k ? g.lineTo(...pt(k)) : g.moveTo(...pt(k))); g.strokeStyle = C.or; g.lineWidth = 9; g.lineJoin = 'round'; g.lineCap = 'round'; g.stroke();
-      const [xd, yd] = pt(5); g.fillStyle = 'rgba(40,66,214,0.2)'; g.beginPath(); g.arc(xd, yd, 32, 0, 7); g.fill(); g.fillStyle = C.orClair; g.beginPath(); g.arc(xd, yd, 15, 0, 7); g.fill();
+      g.beginPath(); v.forEach((_, k) => k ? g.lineTo(...pt(k)) : g.moveTo(...pt(k))); g.strokeStyle = C.or; g.lineWidth = 9; g.lineJoin = 'round'; g.lineCap = 'round'; luire(g, () => g.stroke(), 0.75, 30);
+      const [xd, yd] = pt(5); g.fillStyle = 'rgba(40,66,214,0.2)'; g.beginPath(); g.arc(xd, yd, 32, 0, 7); g.fill(); g.fillStyle = C.orClair; g.beginPath(); g.arc(xd, yd, 15, 0, 7); luire(g, () => g.fill(), 0.95, 36);
     }),
-    fenetre(1.5, 1.05, 'Équipe chantier', '3 en ligne', (g, W, H) => {
+    () => fenetre(1.5, 1.05, 'Équipe chantier', '3 en ligne', (g, W, H) => {
       [[0, 'Les cotes de la cuisine ?'], [1, 'Dossier Leca, onglet Plans.'], [0, 'Trouvé, merci !']].forEach(([moi, t], k) => {
         g.font = F(40, moi ? 500 : 400); const w = Math.min(W - 150, g.measureText(t).width + 76), x = moi ? W - 56 - w : 56, y = 196 + k * 168;
-        g.fillStyle = moi ? C.or : C.fond3; g.beginPath(); g.roundRect(x, y, w, 112, [44, 44, moi ? 10 : 44, moi ? 44 : 10]); g.fill();
+        g.fillStyle = moi ? C.or : C.fond3; g.beginPath(); g.roundRect(x, y, w, 112, [44, 44, moi ? 10 : 44, moi ? 44 : 10]); if (moi) luire(g, () => g.fill(), 0.4, 34); else g.fill();
         g.fillStyle = moi ? C.sombre : C.texte; g.fillText(ajuste(g, t, w - 76), x + 38, y + 58);
       });
     }),
-    fenetre(0.74, 1.5, null, null, (g, W, H) => {
+    () => fenetre(0.74, 1.5, null, null, (g, W, H) => {
       g.fillStyle = C.fond3; g.beginPath(); g.roundRect(W / 2 - 120, 48, 240, 52, 26); g.fill();
       g.fillStyle = C.texte; g.font = SERIF(176); g.textBaseline = 'alphabetic'; g.fillText('Prospects', 60, 330); g.textBaseline = 'middle';
       [['Martin SARL', 'Relancer', C.sombre, C.or], ['M. Roux', 'Signé', C.vert, C.vertFond], ['Café Borély', 'Jeudi', C.orClair, C.orFond], ['SCI Goudes', 'Devis', C.orClair, C.orFond]].forEach(([n, s, c, f], k) => {
@@ -781,29 +1009,29 @@ if (renderer) {
         pilule(g, 104, y + 240, s, c, f, 54);
       });
     }, { rayon: 110 }),
-    fenetre(1.6, 1.05, 'Devis D-042', 'Envoyé', (g, W, H) => {
+    () => fenetre(1.6, 1.05, 'Devis D-042', 'Envoyé', (g, W, H) => {
       [['Plan chêne', '1 140 €'], ['Main-d’œuvre', '1 170 €'], ['Dépose', '180 €']].forEach(([a, b], k) => {
         const y = 222 + k * 90; g.font = F(40); g.fillStyle = C.texte; g.fillText(a, 56, y); g.textAlign = 'right'; g.fillStyle = C.doux; g.fillText(b, W - 56, y); g.textAlign = 'left';
         g.fillStyle = C.trait; g.fillRect(56, y + 45, W - 112, 2);
       });
       g.fillStyle = C.doux; g.font = F(38); g.fillText('Total HT', 56, H - 90);
-      g.textAlign = 'right'; g.fillStyle = C.orClair; g.font = SERIF(150); g.textBaseline = 'alphabetic'; g.fillText('2 490 €', W - 56, H - 46); g.textAlign = 'left'; g.textBaseline = 'middle';
+      g.textAlign = 'right'; g.fillStyle = C.orClair; g.font = SERIF(150); g.textBaseline = 'alphabetic'; luire(g, () => g.fillText('2 490 €', W - 56, H - 46), 0.4, 30); g.textAlign = 'left'; g.textBaseline = 'middle';
     }),
-    fenetre(1.45, 0.46, null, null, (g, W, H) => {
-      g.fillStyle = C.or; g.beginPath(); g.arc(130, H / 2, 74, 0, 7); g.fill();
+    () => fenetre(1.45, 0.46, null, null, (g, W, H) => {
+      g.fillStyle = C.or; g.beginPath(); g.arc(130, H / 2, 74, 0, 7); luire(g, () => g.fill(), 0.5, 40);
       g.strokeStyle = C.sombre; g.lineWidth = 13; g.lineCap = 'round'; g.lineJoin = 'round'; g.beginPath(); g.moveTo(96, H / 2 + 2); g.lineTo(121, H / 2 + 27); g.lineTo(166, H / 2 - 24); g.stroke();
       g.fillStyle = C.texte; g.font = F(56, 500); g.fillText('Facture payée', 246, H / 2 - 34);
       g.fillStyle = C.doux; g.font = F(44); g.fillText('Mme Leca · 1 980 €', 246, H / 2 + 40);
     }, { rayon: 80 }),
-    fenetre(0.95, 0.95, null, null, (g, W, H) => {
+    () => fenetre(0.95, 0.95, null, null, (g, W, H) => {
       const cx = W / 2, cy = H / 2 - 44, r = 290;
       g.lineWidth = 46; g.strokeStyle = C.fond3; g.beginPath(); g.arc(cx, cy, r, 0, 7); g.stroke();
       const an = g.createLinearGradient(cx - r, cy - r, cx + r, cy + r); an.addColorStop(0, C.orClair); an.addColorStop(1, C.or);
-      g.strokeStyle = an; g.lineCap = 'round'; g.beginPath(); g.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * 0.72); g.stroke();
+      g.strokeStyle = an; g.lineCap = 'round'; g.beginPath(); g.arc(cx, cy, r, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * 0.72); luire(g, () => g.stroke(), 0.6, 40);
       g.fillStyle = C.texte; g.textAlign = 'center'; g.font = SERIF(240); g.fillText('72 %', cx, cy + 8);
       g.font = F(52); g.fillStyle = C.doux; g.fillText('Planning rempli', cx, H - 92); g.textAlign = 'left';
     }, { rayon: 80 }),
-    fenetre(1.7, 1.0, 'Chantiers', '5 en cours', (g, W, H) => {
+    () => fenetre(1.7, 1.0, 'Chantiers', '5 en cours', (g, W, H) => {
       const cols = ['À faire', 'En cours', 'Terminé'], lc = (W - 112) / 3;
       cols.forEach((t, k) => { g.fillStyle = C.doux; g.font = F(36); g.fillText(t, 56 + k * lc, 222); });
       [[0, 0, 'Borély'], [0, 1, 'Goudes'], [1, 0, 'Leca'], [1, 1, 'Roux'], [2, 0, 'Ferri']].forEach(([k, y, t]) => {
@@ -813,12 +1041,12 @@ if (renderer) {
         g.fillStyle = C.texte; g.font = F(40, 500); g.fillText(ajuste(g, t, w - 96), x + 72, yy + 70);
       });
     }),
-    fenetre(1.55, 1.0, 'Intervention', 'Signé', (g, W, H) => {
+    () => fenetre(1.55, 1.0, 'Intervention', 'Signé', (g, W, H) => {
       [['Client', 'Mme Leca'], ['Durée', '6 h 30']].forEach(([a, b], k) => { const y = 226 + k * 76; g.font = F(38); g.fillStyle = C.doux; g.fillText(a, 56, y); g.font = F(42, 500); g.fillStyle = C.texte; g.fillText(b, 300, y); });
       g.fillStyle = C.fond2; g.beginPath(); g.roundRect(56, 352, W - 112, H - 400, 28); g.fill();
       g.strokeStyle = C.orClair; g.lineWidth = 9; g.lineCap = 'round'; g.beginPath(); g.moveTo(130, H - 92); g.bezierCurveTo(200, H - 230, 260, H - 230, 272, H - 110); g.bezierCurveTo(296, H - 46, 380, H - 170, 450, H - 134); g.bezierCurveTo(510, H - 100, 560, H - 186, 690, H - 120); g.stroke();
     }),
-    fenetre(1.6, 1.0, 'Clients', '42 fiches', (g, W, H) => {
+    () => fenetre(1.6, 1.0, 'Clients', '42 fiches', (g, W, H) => {
       [['ML', 'Mme Leca', 'À jour'], ['MR', 'M. Roux', 'Devis'], ['CB', 'Café Borély', 'Relance']].forEach(([i, n, s], k) => {
         const y = 236 + k * 140; g.fillStyle = k === 0 ? C.or : C.fond3; g.beginPath(); g.arc(116, y, 54, 0, 7); g.fill();
         g.fillStyle = k === 0 ? C.sombre : C.texte; g.font = F(36, 500); g.textAlign = 'center'; g.fillText(i, 116, y + 1); g.textAlign = 'left';
@@ -827,16 +1055,16 @@ if (renderer) {
         if (k < 2) { g.fillStyle = C.trait; g.fillRect(56, y + 70, W - 112, 2); }
       });
     }),
-    fenetre(1.5, 1.0, null, null, (g, W, H) => {
+    () => fenetre(1.5, 1.0, null, null, (g, W, H) => {
       g.fillStyle = C.doux; g.font = F(40); g.fillText('Encaissé en octobre', 60, 104);
       g.fillStyle = C.texte; g.font = SERIF(220); g.textBaseline = 'alphabetic'; g.fillText('18 420 €', 50, 340); g.textBaseline = 'middle';
       g.fillStyle = C.trait; g.fillRect(60, 398, W - 120, 2);
       g.font = F(36); g.fillStyle = C.doux; g.fillText('À encaisser', 60, 462); g.fillText('En retard', W * 0.56, 462);
-      g.font = SERIF(110); g.textBaseline = 'alphabetic'; g.fillStyle = C.orClair; g.fillText('4 260 €', 56, 586); g.fillStyle = C.texte; g.fillText('0', W * 0.56, 586); g.textBaseline = 'middle';
+      g.font = SERIF(110); g.textBaseline = 'alphabetic'; g.fillStyle = C.orClair; luire(g, () => g.fillText('4 260 €', 56, 586), 0.35, 26); g.fillStyle = C.texte; g.fillText('0', W * 0.56, 586); g.textBaseline = 'middle';
       g.fillStyle = C.fond3; g.beginPath(); g.roundRect(60, H - 58, W - 120, 18, 9); g.fill();
-      g.fillStyle = C.or; g.beginPath(); g.roundRect(60, H - 58, (W - 120) * 0.81, 18, 9); g.fill();
+      g.fillStyle = C.or; g.beginPath(); g.roundRect(60, H - 58, (W - 120) * 0.81, 18, 9); luire(g, () => g.fill(), 0.7, 24);
     }, { fondHaut: '#f6f8ff', fondBas: '#e5eaff', bordHaut: 'rgba(40,66,214,0.8)', bordMilieu: 'rgba(40,66,214,0.5)', bordBas: 'rgba(40,66,214,0.35)', lueur: 'rgba(40,66,214,0.12)' }),
-    fenetre(1.6, 1.0, 'Messages', '2 non lus', (g, W, H) => {
+    () => fenetre(1.6, 1.0, 'Messages', '2 non lus', (g, W, H) => {
       [['Bois du Midi', 'Commande expédiée', 1], ['Mme Leca', 'Merci, tout est parfait.', 1], ['Comptable', 'Pièces bien reçues.', 0]].forEach(([a, b, nl], k) => {
         const y = 236 + k * 142;
         if (nl) { g.fillStyle = C.or; g.beginPath(); g.arc(74, y - 24, 12, 0, 7); g.fill(); }
@@ -846,27 +1074,37 @@ if (renderer) {
       });
     }),
   ];
+  const modeles = [];
+  for (const recette of recettes) { modeles.push(recette()); await souffler(); }
 
-  /* La matière d'une carte. Sa face se lit un demi-niveau de détail plus fin que ce que la carte graphique choisirait
-     (le texte reste net en se réduisant), sauf loin du point de netteté, où elle s'adoucit comme dans une profondeur de
-     champ ; un reflet glisse sur la surface quand la carte tourne. */
-  const matiereFace = (mat) => {
-    mat.userData.u = { uFlou: { value: 0 }, uReflet: { value: 0 }, uBande: { value: 0 } };
-    mat.onBeforeCompile = (sh) => {
-      Object.assign(sh.uniforms, mat.userData.u);
-      sh.fragmentShader = 'uniform float uFlou;\nuniform float uReflet;\nuniform float uBande;\n' + sh.fragmentShader.replace('#include <map_fragment>', [
-        '#ifdef USE_MAP',
-        '  vec4 echantillon = texture2D( map, vMapUv, mix( -0.65, 1.8, uFlou ) );',
-        '  diffuseColor *= echantillon;',
-        '  float ecart = vMapUv.x * 0.7 + vMapUv.y - uBande;',
-        '  diffuseColor.rgb += vec3( 1.0, 0.92, 0.78 ) * exp( -ecart * ecart * 14.0 ) * uReflet * echantillon.a;',
-        '#endif'].join('\n'));
-    };
-    mat.customProgramCacheKey = () => 'carte-face';
-  };
-  /* Une lumière douce vient d'en haut à gauche : une carte qui s'en détourne s'assombrit, et le volume se lit */
-  const LUMIERE = new THREE.Vector3(-0.35, 0.55, 0.76).normalize(), normale = new THREE.Vector3(), versCamera = new THREE.Vector3();
+  /* ── Les cartes. Chaque modèle se dessine en UNE fois pour toutes ses cartes, face, dos et tranche réunis : une
+     douzaine d'appels de dessin au lieu de plusieurs centaines. La face se lit un demi-niveau de détail plus fin que
+     ce que la carte graphique choisirait (le texte reste net en se réduisant), sauf loin du point de netteté, où elle
+     s'adoucit comme dans une profondeur de champ ; un reflet glisse sur la surface quand la carte tourne ; une lumière
+     douce, venue d'en haut à gauche, assombrit la carte qui s'en détourne. ── */
+  const LUMIERE = new THREE.Vector3(-0.35, 0.55, 0.76).normalize();
   const EPAISSEUR = 0.007;
+  const matiereCarte = (face, dos) => {
+    const mat = new THREE.MeshBasicMaterial({ map: face, fog: true });
+    mat.onBeforeCompile = (sh) => {
+      sh.uniforms.uDos = { value: dos };
+      sh.vertexShader = 'attribute vec3 aEtat;\nattribute float aPartie;\nvarying vec3 vEtat;\nvarying float vPartie;\n'
+        + sh.vertexShader.replace('#include <begin_vertex>', '#include <begin_vertex>\n  vEtat = aEtat; vPartie = aPartie;');
+      sh.fragmentShader = 'uniform sampler2D uDos;\nvarying vec3 vEtat;\nvarying float vPartie;\n' + sh.fragmentShader.replace('#include <map_fragment>', [
+        '  float nl = vEtat.x, lumiere = abs( nl );',
+        '  if ( vPartie > 1.5 ) {',                                   /* la tranche */
+        '    diffuseColor.rgb = vec3( 0.62, 0.62, 0.7 ) * ( 0.8 + 0.2 * lumiere );',
+        '  } else if ( vPartie > 0.5 ) {',                            /* le dos */
+        '    diffuseColor.rgb = texture2D( uDos, vMapUv ).rgb * ( 0.84 + 0.16 * lumiere );',
+        '  } else {',                                                 /* la face */
+        '    vec3 dessin = texture2D( map, vMapUv, mix( -0.65, 1.8, vEtat.y ) ).rgb;',
+        '    float ecart = vMapUv.x * 0.7 + vMapUv.y - vEtat.z;',
+        '    diffuseColor.rgb = dessin * ( 0.86 + 0.15 * lumiere ) + vec3( 0.9, 0.94, 1.0 ) * exp( -ecart * ecart * 14.0 ) * ( 0.012 + 0.012 * max( 0.0, nl ) );',
+        '  }'].join('\n'));
+    };
+    mat.customProgramCacheKey = () => 'carte';
+    return mat;
+  };
   /* Le contour arrondi d'une carte, au rayon même de son dessin : le bord est une vraie arête, nette, pas un détourage */
   const contour = (l, h, r) => {
     const s = new THREE.Shape(), x = -l / 2, y = -h / 2;
@@ -876,48 +1114,113 @@ if (renderer) {
     s.lineTo(x, y + r); s.absarc(x + r, y + r, r, Math.PI, Math.PI * 1.5);
     return s;
   };
-  const versUv = (geo, l, h) => { const p = geo.attributes.position, uv = geo.attributes.uv; for (let k = 0; k < p.count; k++) uv.setXY(k, (p.getX(k) + l / 2) / l, (p.getY(k) + h / 2) / h); };
+  /* La forme d'un modèle : sa face, son dos (la même forme retournée) et sa tranche, dans une seule géométrie.
+     Chaque triangle regarde vers l'extérieur ; aPartie dit au dessin de quel côté de la carte il se trouve. */
+  const geometrieCarte = (mod) => {
+    const s = contour(mod.l, mod.h, mod.r * mod.l / 1024);
+    const face = new THREE.ShapeGeometry(s, 10).toNonIndexed(), pf = face.attributes.position, n = pf.count;
+    const bord = s.getPoints(10), total = n * 2 + bord.length * 6;
+    const pos = new Float32Array(total * 3), uv = new Float32Array(total * 2), partie = new Float32Array(total);
+    let k = 0;
+    const sommet = (x, y, z, u, v, p) => { pos[k * 3] = x; pos[k * 3 + 1] = y; pos[k * 3 + 2] = z; uv[k * 2] = u; uv[k * 2 + 1] = v; partie[k] = p; k++; };
+    for (let i = 0; i < n; i++) { const x = pf.getX(i), y = pf.getY(i); sommet(x, y, 0, x / mod.l + 0.5, y / mod.h + 0.5, 0); }
+    for (let i = 0; i < n; i += 3) for (const j of [0, 2, 1]) { const x = pf.getX(i + j), y = pf.getY(i + j); sommet(x, y, -EPAISSEUR, 0.5 - x / mod.l, y / mod.h + 0.5, 1); }
+    for (let i = 0; i < bord.length; i++) {
+      const a = bord[i], b = bord[(i + 1) % bord.length];
+      sommet(a.x, a.y, 0, 0, 0, 2); sommet(b.x, b.y, -EPAISSEUR, 0, 0, 2); sommet(b.x, b.y, 0, 0, 0, 2);
+      sommet(a.x, a.y, 0, 0, 0, 2); sommet(a.x, a.y, -EPAISSEUR, 0, 0, 2); sommet(b.x, b.y, -EPAISSEUR, 0, 0, 2);
+    }
+    face.dispose();
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute('uv', new THREE.BufferAttribute(uv, 2));
+    geo.setAttribute('aPartie', new THREE.BufferAttribute(partie, 1));
+    return geo;
+  };
   /* Le dos : sombre, avec le monogramme JD au centre */
-  const texDos = (l, h, r) => {
+  const texDos = (l, h) => {
     const W = 512, H = Math.round(W * h / l), c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
     const fd = g.createLinearGradient(0, 0, W, H); fd.addColorStop(0, '#f7f7fa'); fd.addColorStop(1, '#e3e3ec'); g.fillStyle = fd; g.fillRect(0, 0, W, H);
     const m = Math.min(W, H) * 0.16; g.strokeStyle = 'rgba(42,70,224,0.45)'; g.lineWidth = 2.5; g.beginPath(); g.arc(W / 2, H / 2, m, 0, 7); g.stroke();
     g.fillStyle = 'rgba(42,70,224,0.55)'; g.font = `400 ${Math.round(m * 0.95)}px "Instrument Serif", Georgia, serif`; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText('JD', W / 2, H / 2 + m * 0.06);
-    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO; return t;
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO; renderer.initTexture(t); return t;
   };
-  /* Chaque modèle prépare une fois sa face, son dos et sa tranche ; les cartes les partagent */
-  const formes = modeles.map((mod) => {
-    const r = mod.r * mod.l / 1024, s = contour(mod.l, mod.h, r);
-    const face = new THREE.ShapeGeometry(s, 10); versUv(face, mod.l, mod.h);
-    const dos = face.clone(); dos.rotateY(Math.PI); dos.translate(0, 0, -EPAISSEUR);
-    const pts = s.getPoints(10), sommets = [];
-    for (let k = 0; k < pts.length; k++) {
-      const a = pts[k], b = pts[(k + 1) % pts.length];
-      sommets.push(a.x, a.y, 0, b.x, b.y, 0, b.x, b.y, -EPAISSEUR, a.x, a.y, 0, b.x, b.y, -EPAISSEUR, a.x, a.y, -EPAISSEUR);
-    }
-    const tranche = new THREE.BufferGeometry(); tranche.setAttribute('position', new THREE.Float32BufferAttribute(sommets, 3));
-    return { face, dos, tranche, texDos: texDos(mod.l, mod.h) };
-  });
+
   const N = mobile ? 64 : 120;
-  const panneaux = [];
   const alea = (() => { let s = 7; return () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; }; })();
   const centreX = mobile ? 0 : 3.6, centreY = mobile ? -4.4 : 0;
   const CR = mobile ? { cols: 3, ligs: 4, l: 1.45, h: 1.0 } : { cols: 4, ligs: 3, l: 2.0, h: 1.36 };
   const ECART = mobile ? 1.5 : 2.4, PAS = mobile ? 0.3 : 0.36, RAYON = mobile ? 2.5 : 4.0, R_ANNEAU = mobile ? 2.6 : 4.5;
 
+  const lots = [];
+  for (let k = 0; k < modeles.length; k++) {
+    const mod = modeles[k], n = Math.ceil((N - k) / modeles.length);
+    const lot = new THREE.InstancedMesh(geometrieCarte(mod), matiereCarte(mod.t, texDos(mod.l, mod.h)), n);
+    lot.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    const etat = new THREE.InstancedBufferAttribute(new Float32Array(n * 3), 3); etat.setUsage(THREE.DynamicDrawUsage);
+    lot.geometry.setAttribute('aEtat', etat);
+    lot.frustumCulled = false;
+    scene.add(lot); lots.push({ lot, etat });
+    if (k % 4 === 3) await souffler();
+  }
+  const panneaux = [];
   for (let i = 0; i < N; i++) {
-    const k = i % modeles.length, mod = modeles[k], fo = formes[k];
-    const matFace = new THREE.MeshBasicMaterial({ map: mod.t, transparent: true, opacity: 1, fog: true });
-    matiereFace(matFace);
-    const matDos = new THREE.MeshBasicMaterial({ map: fo.texDos, transparent: true, opacity: 1, fog: true });
-    const matTranche = new THREE.MeshBasicMaterial({ color: 0xd4d4de, transparent: true, opacity: 1, fog: true, side: THREE.DoubleSide });
-    const m = new THREE.Group();
-    m.add(new THREE.Mesh(fo.face, matFace), new THREE.Mesh(fo.dos, matDos), new THREE.Mesh(fo.tranche, matTranche));
-    scene.add(m);
-    panneaux.push({ m, mod, mats: [matFace, matDos, matTranche], face: matFace, tranche: matTranche, phase: alea() * Math.PI * 2, vitesse: 0.3 + alea() * 0.5, etats: [], retard: alea() * 0.5,
+    const k = i % modeles.length;
+    panneaux.push({ i, lot: lots[k], rang: Math.floor(i / modeles.length), mod: modeles[k], phase: alea() * Math.PI * 2, vitesse: 0.3 + alea() * 0.5, etats: [], retard: alea() * 0.5,
       tourbillon: new THREE.Quaternion().setFromEuler(new THREE.Euler((alea() - 0.5) * 6, (alea() - 0.5) * 6, (alea() - 0.5) * 6)),
       depart: new THREE.Vector3((alea() - 0.5) * 0.6, (alea() - 0.5) * 0.4, 4 + alea() * 2) });
   }
+
+  /* L'ombre douce que chaque carte pose sur ce qui se trouve derrière elle : c'est elle qui détache les cartes les
+     unes des autres dans les piles, les rangées et l'anneau. Elle a la couleur de la nuit : sur le fond, elle ne se
+     voit pas. Toutes les ombres se dessinent en un seul appel. */
+  const ombres = (() => {
+    const mat = new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false,
+      uniforms: { uOpacite: { value: 0 } },
+      vertexShader: 'varying vec2 vUv;\nvoid main() {\n  vUv = uv;\n  gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4( position, 1.0 );\n}',
+      fragmentShader: [
+        'uniform float uOpacite;', 'varying vec2 vUv;',
+        'void main() {',
+        '  vec2 p = abs( vUv - 0.5 ) * 2.0;',
+        '  float a = ( 1.0 - smoothstep( 0.6, 1.0, p.x ) ) * ( 1.0 - smoothstep( 0.52, 1.0, p.y ) );',
+        '  gl_FragColor = vec4( 0.09, 0.11, 0.24, a * a * uOpacite );',
+        '}'].join('\n'),
+    });
+    const lot = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, 1), mat, N);
+    lot.instanceMatrix.setUsage(THREE.DynamicDrawUsage); lot.frustumCulled = false; lot.renderOrder = -3;
+    scene.add(lot); return lot;
+  })();
+
+  /* Une lumière d'ambiance, chaude et très douce, loin derrière la scène : le vide n'est plus un aplat noir, et les
+     cartes se détachent sur une profondeur. Elle s'allume avec l'éclosion des cartes. Le léger bruit ajouté au
+     dégradé empêche les bandes que fait un dégradé sombre sur un écran. */
+  const ambiance = (() => {
+    const mat = new THREE.ShaderMaterial({
+      transparent: true, depthWrite: false,
+      uniforms: { uForce: { value: 0 } },
+      vertexShader: 'varying vec2 vUv;\nvoid main() {\n  vUv = uv;\n  gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );\n}',
+      fragmentShader: [
+        'uniform float uForce;', 'varying vec2 vUv;',
+        'float bruit( vec2 p ) { return fract( sin( dot( p, vec2( 12.9898, 78.233 ) ) ) * 43758.5453 ); }',
+        'void main() {',
+        '  float d = length( ( vUv - 0.5 ) * 2.0 );',
+        '  float halo = pow( max( 0.0, 1.0 - d ), 2.4 );',
+        '  gl_FragColor = vec4( 0.157, 0.259, 0.839, max( 0.0, halo * uForce + ( bruit( gl_FragCoord.xy ) - 0.5 ) * 0.006 ) );',
+        '}'].join('\n'),
+    });
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(mobile ? 34 : 52, mobile ? 44 : 36), mat);
+    m.position.set(centreX, centreY, -24); m.renderOrder = -6; m.frustumCulled = false;
+    scene.add(m); return m;
+  })();
+  /* Un halo d'or autour d'un objet : peint une fois, ajouté par-dessus l'image (ce qui est doré semble éclairer) */
+  const halo = (taille, peindre, z) => {
+    const c = document.createElement('canvas'); c.width = c.height = 512; const g = c.getContext('2d');
+    peindre(g);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(taille, taille), new THREE.MeshBasicMaterial({ map: t, transparent: true, opacity: 0, depthWrite: false, depthTest: false, fog: false }));
+    m.position.set(centreX, centreY, z); m.renderOrder = 2; m.visible = false; scene.add(m); return m;
+  };
 
   /* Une poussière d'or en suspension, à peine visible, qui donne de la profondeur au vide */
   const poussiere = (() => {
@@ -930,7 +1233,7 @@ if (renderer) {
     const rg = g.createRadialGradient(32, 32, 0, 32, 32, 32); rg.addColorStop(0, 'rgba(40,66,214,1)'); rg.addColorStop(0.35, 'rgba(40,66,214,0.4)'); rg.addColorStop(1, 'rgba(40,66,214,0)'); g.fillStyle = rg; g.fillRect(0, 0, 64, 64);
     const tex = new THREE.CanvasTexture(c); tex.colorSpace = THREE.SRGBColorSpace;
     const pts = new THREE.Points(geo, new THREE.PointsMaterial({ map: tex, size: mobile ? 0.09 : 0.075, sizeAttenuation: true, transparent: true, opacity: 0.4, depthWrite: false, fog: true }));
-    scene.add(pts); return pts;
+    pts.frustumCulled = false; scene.add(pts); return pts;
   })();
 
   /* Cinq états : désordre, colonnes par métier, outils reliés, un seul écran, l'anneau */
@@ -956,7 +1259,8 @@ if (renderer) {
       const dec = new THREE.Vector3((c3 - (CR.cols - 1) / 2) * CR.l, ((CR.ligs - 1) / 2 - l3) * CR.h, 0.06).applyQuaternion(q(-0.1, -0.28, 0));
       p.etats.push({ pos: new THREE.Vector3(centreX, centreY, 0).add(dec), rot: q(-0.1, -0.28, 0), s: Math.min(CR.l / p.mod.l, CR.h / p.mod.h) * 0.9 });
     } else {
-      p.etats.push({ pos: new THREE.Vector3(centreX + (alea() - 0.5) * 10, centreY + (alea() - 0.5) * 7, -9 - alea() * 6), rot: q(-0.1, -0.28, 0), s: 0.4, o: 0 });
+      /* Les autres cartes s'enfoncent dans la nuit, derrière l'écran : la brume les efface, sans transparence à trier */
+      p.etats.push({ pos: new THREE.Vector3(centreX + (alea() - 0.5) * 10, centreY + (alea() - 0.5) * 7, -44 - alea() * 6), rot: q(-0.1, -0.28, 0), s: 0.4 });
     }
 
     const a4 = (i / N) * Math.PI * 2;
@@ -980,20 +1284,37 @@ if (renderer) {
   const matNoeud = new THREE.MeshBasicMaterial({ color: COUL.or, transparent: true, opacity: 0, side: THREE.DoubleSide });
   noeud.add(new THREE.Mesh(new THREE.RingGeometry(rNoeud - 0.018, rNoeud, 96), matNoeud));
   noeud.add(new THREE.Mesh(new THREE.CircleGeometry(0.07, 32), matNoeud));
-  noeud.material = matNoeud;
   noeud.position.copy(moyeu); scene.add(noeud);
   const anneau = new THREE.Mesh(new THREE.TorusGeometry(R_ANNEAU, mobile ? 0.012 : 0.018, 8, 200), new THREE.MeshBasicMaterial({ color: COUL.or, transparent: true, opacity: 0 }));
   anneau.position.set(centreX, centreY, 0); scene.add(anneau);
+  /* Le moyeu et l'anneau final diffusent leur lumière */
+  const haloMoyeu = halo(rNoeud * 7, (g) => {
+    const rg = g.createRadialGradient(256, 256, 0, 256, 256, 256); rg.addColorStop(0, 'rgba(40,66,214,0.3)'); rg.addColorStop(0.25, 'rgba(40,66,214,0.1)'); rg.addColorStop(1, 'rgba(40,66,214,0)');
+    g.fillStyle = rg; g.fillRect(0, 0, 512, 512);
+  }, -0.5);
+  const haloAnneau = halo(R_ANNEAU * 2 * 256 / 180, (g) => {
+    g.strokeStyle = 'rgba(40,66,214,0.16)'; g.lineWidth = 3; g.shadowColor = 'rgba(40,66,214,0.7)'; g.shadowBlur = 44;
+    for (let k = 0; k < 3; k++) { g.beginPath(); g.arc(256, 256, 180, 0, 7); g.stroke(); }
+  }, 0);
 
   /* Le cadre d'or de l'outil sur mesure */
   const cadre = (() => {
-    const l = CR.cols * CR.l + 0.5, h = CR.ligs * CR.h + 0.5, W = 1024, H = Math.round(1024 * h / l);
+    /* L'écran de l'outil : une vitre à peine éclairée, plus claire en haut, dans un cadre d'or qui diffuse sa
+       lumière. La marge laisse la place à ce halo. */
+    const l = CR.cols * CR.l + 0.5, h = CR.ligs * CR.h + 0.5, marge = 0.8;
+    const W = mobile ? 1024 : 1400, k = W / (l + 2 * marge), H = Math.round((h + 2 * marge) * k);
     const c = document.createElement('canvas'); c.width = W; c.height = H; const g = c.getContext('2d');
-    g.lineWidth = 6; g.strokeStyle = '#2842d6'; g.beginPath(); g.roundRect(6, 6, W - 12, H - 12, 28); g.stroke();
-    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
-    const m = new THREE.Mesh(new THREE.PlaneGeometry(l, h), new THREE.MeshBasicMaterial({ map: t, transparent: true, opacity: 0, depthWrite: false }));
-    m.renderOrder = -1; m.position.set(centreX, centreY, 0); m.quaternion.copy(q(-0.1, -0.28, 0)); scene.add(m); return m;
+    const x = (marge + 0.05) * k, y = (marge + 0.05) * k, lw = (l - 0.1) * k, hw = (h - 0.1) * k, r = 0.23 * k;
+    const tracer = () => { g.beginPath(); g.roundRect(x, y, lw, hw, r); };
+    const verre = g.createLinearGradient(0, y, 0, y + hw); verre.addColorStop(0, 'rgba(255,255,255,0.9)'); verre.addColorStop(0.45, 'rgba(255,255,255,0.66)'); verre.addColorStop(1, 'rgba(255,255,255,0.5)');
+    tracer(); g.fillStyle = verre; g.fill();
+    g.lineWidth = 0.05 * k; g.strokeStyle = '#2842d6';
+    g.save(); g.shadowColor = 'rgba(40,66,214,0.38)'; g.shadowBlur = 0.42 * k; tracer(); g.stroke(); g.shadowBlur = 0.12 * k; g.stroke(); g.restore();
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = ANISO;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(l + 2 * marge, h + 2 * marge), new THREE.MeshBasicMaterial({ map: t, transparent: true, opacity: 0, depthWrite: false, fog: false }));
+    m.renderOrder = -4; m.position.set(centreX, centreY, 0); m.quaternion.copy(q(-0.1, -0.28, 0)); scene.add(m); return m;
   })();
+  await souffler();
 
   /* Étiquettes en HTML, posées sur des points de la scène */
   const calque = document.querySelector('.etiquettes');
@@ -1001,7 +1322,7 @@ if (renderer) {
   const etiquette = (texte, etat, point, or = false, gauche = false) => {
     const el = document.createElement('span'); el.className = 'etiquette' + (or ? ' or' : ''); el.textContent = texte; calque.append(el);
     if (gauche) el.classList.add('gauche');
-    etiquettes.push({ el, etat, point, centre: or, gauche });
+    etiquettes.push({ el, etat, point, ancre: or ? '-50%' : gauche ? 'calc(-100% + 4px)' : '-4px', o: 0 });
   };
   const nRang = Math.ceil(N / 4);
   (mobile ? [] : ['Le dirigeant', 'Le commercial', 'Le chantier', 'L’administration']).forEach((t, c) => etiquette(t, 1, new THREE.Vector3(centreX + (c - 1.5) * ECART, centreY + ((nRang - 1) / 2) * PAS + 0.6, -2)));
@@ -1012,133 +1333,127 @@ if (renderer) {
   etiquette('Un compte par personne', 2, moyeu.clone().add(new THREE.Vector3(0, -rNoeud - 0.45, 0)), true);
   etiquette('Un outil conçu pour votre équipe', 3, new THREE.Vector3(centreX, centreY - CR.ligs * CR.h / 2 - 0.55, 0), true);
 
-  /* Le défilement décide de l'état */
-  const chapitres = [...document.querySelectorAll('.recit .chapitre')];
-  const index = document.querySelector('.index-recit');
-  const boutonsIndex = [...index.querySelectorAll('button')];
-  let ancres = [];
-  const mesurer = () => {
-    const w = innerWidth, h = innerHeight;
-    renderer.setSize(w, h, false);
-    camera.aspect = w / h;
-    camera.position.z = mobile ? 17 : (w / h < 1.5 ? 22 : 20);
+  /* La toile garde la taille du plus grand écran possible : sur téléphone, la barre d'adresse qui se replie ne la
+     fait pas recalculer en plein défilement */
+  const toile = renderer.domElement, voile = document.querySelector('.voile-scene');
+  let L = 1, H = 1, recul = 0, axeX = centreX * 0.18;
+  const mesurerLaScene = () => {
+    L = toile.clientWidth || innerWidth; H = toile.clientHeight || innerHeight;
+    renderer.setSize(L, H, false);
+    camera.aspect = L / H;
+    /* Sur un écran moins large que haut (1024 × 768, fenêtre réduite), la caméra recule et se décale : la scène
+       reste à droite du texte au lieu de passer dessous */
+    camera.position.z = mobile ? 17 : Math.min(27, Math.max(20, 30 / camera.aspect));
+    recul = mobile ? 0 : Math.min(2, Math.max(0, (1.5 - camera.aspect) * 4));
+    axeX = centreX * 0.18 - recul;
     camera.updateProjectionMatrix();
-    ancres = chapitres.map((c) => c.getBoundingClientRect().top + scrollY + c.offsetHeight * 0.33 - h * 0.15);
   };
-  mesurer();
-  addEventListener('resize', mesurer);
-
-  const lisse = (t) => t * t * (3 - 2 * t);
-  const etatDuDefilement = (y) => {
-    if (capture) return Math.max(0, Math.min(4, (parseInt(params.get('capture'), 10) || 1) - 1));
-    if (y <= ancres[0]) return 0;
-    for (let k = 0; k < 4; k++) {
-      if (y < ancres[k + 1]) {
-        const t = (y - ancres[k]) / (ancres[k + 1] - ancres[k]);
-        return k + lisse(Math.min(1, Math.max(0, (t - 0.2) / 0.6)));
-      }
-    }
-    return 4;
-  };
-
-  let courant = -1;
-  boutonsIndex.forEach((b, k) => b.addEventListener('click', () => {
-    const cible = ancres[k] + 2;
-    if (window.lenis) window.lenis.scrollTo(cible, { duration: 1.6 }); else scrollTo({ top: cible, behavior: 'smooth' });
-  }));
+  mesurerLaScene(); jd.apresMesure(mesurerLaScene);
+  /* Programmes et textures partent à la carte graphique maintenant, pas à la première image visible */
+  renderer.compile(scene, camera);
 
   const pointeur = new THREE.Vector2(0, 0), regard = new THREE.Vector2(0, 0);
   addEventListener('pointermove', (e) => { pointeur.set(e.clientX / innerWidth - 0.5, e.clientY / innerHeight - 0.5); }, { passive: true });
 
-  const tmpP = new THREE.Vector3(), tmpQ = new THREE.Quaternion(), proj = new THREE.Vector3();
-  const finRecit = () => { const d = document.querySelector('.travail'); return d.getBoundingClientRect().top + scrollY; };
-  let visible = true, horloge = 0, dernier = performance.now(), entreeLisse = -1;
+  const tmpP = new THREE.Vector3(), tmpQ = new THREE.Quaternion(), tmpS = new THREE.Vector3(), tour = new THREE.Quaternion(), matrice = new THREE.Matrix4();
+  const AXE_Y = new THREE.Vector3(0, 1, 0), normale = new THREE.Vector3(), proj = new THREE.Vector3(), versCamera = new THREE.Vector3();
+  const calmeIci = capture ? 0 : 1;
+  const eclosion = { x: -1, v: 0 };
+  let horloge = 0, entree = 0, opaciteToile = -1, eteinte = false, lenteur = 0, repos = 120, allumage = capture ? 1 : 0, voileEcrit = -1;
 
-  function rendre(now) {
-    const dt = Math.min(0.05, (now - dernier) / 1000); dernier = now; horloge += dt;
-    const y = scrollY;
-    const s = etatDuDefilement(y);
-    const a = Math.floor(s), b = Math.min(4, a + 1), t = s - a;
+  function rendre(t, dt) {
+    horloge += dt;
+    const s = R.s, fondu = R.fondu;
+    const a = Math.min(4, Math.floor(s)), b = Math.min(4, a + 1), u = s - a;
 
-    /* Après le récit, le monde s'efface */
-    const fin = finRecit();
-    const fondu = capture ? 1 : Math.min(1, Math.max(0, 1 - (y + innerHeight * 0.55 - fin) / (innerHeight * 0.45)));
+    /* Après le récit, le monde s'efface ; tant qu'il est éteint, rien ne se dessine */
+    allumage = Math.min(1, allumage + dt / 0.7);   /* la scène ne surgit pas : elle s'allume en moins d'une seconde */
+    const o = Math.round(fondu * allumage * allumage * (3 - 2 * allumage) * 1000) / 1000;
+    if (o !== opaciteToile) { opaciteToile = o; toile.style.opacity = String(o); }
     /* L'arrivée des cartes : elles jaillissent du logo au premier défilement, en douceur */
-    const cibleEntree = capture ? 1 : Math.min(1, Math.max(0, y / (innerHeight * 0.85)));
-    if (entreeLisse < 0) entreeLisse = cibleEntree;
-    entreeLisse += (cibleEntree - entreeLisse) * (1 - Math.exp(-dt * 4));
-    const entree = entreeLisse;
-    renderer.domElement.style.opacity = fondu.toFixed(3);
-    const dansRecit = y > ancres[0] - innerHeight * 0.6 && y < fin - innerHeight * 0.4;
-    index.classList.toggle('visible', dansRecit && !capture);
-    if (fondu <= 0.001) { for (const e of etiquettes) e.el.style.opacity = '0'; if (visible) requestAnimationFrame(rendre); return; }
+    if (eclosion.x < 0) eclosion.x = R.entree;
+    entree = jd.amortir(eclosion, R.entree, 0.5, 1.9, dt);
+    if (fondu <= 0.001) {
+      if (!eteinte) { eteinte = true; for (const e of etiquettes) if (e.o !== 0) { e.o = 0; e.el.style.opacity = '0'; } }
+      return;
+    }
+    eteinte = false;
 
-    const calmeIci = capture ? 0 : 1;
+    regard.lerp(pointeur, 1 - Math.exp(-dt * 2.5));
+    camera.position.x = regard.x * (mobile ? 0.4 : 1.4) - recul;
+    camera.position.y = -regard.y * (mobile ? 0.3 : 0.9);
+    camera.lookAt(axeX, centreY * 0.3, 0);
+    /* Le voile derrière le texte ne sert qu'au désordre du début : dès que les cartes se rangent à leur place, il se lève */
+    const v = Math.round(Math.max(0, 1 - s) * 40) / 40;
+    if (v !== voileEcrit) { voileEcrit = v; voile.style.setProperty('--texte', v); }
+
+    const flottement = (a === 0 && u < 0.5 ? 1 - u * 2 : 0.18) * calmeIci;
     for (const p of panneaux) {
       const A = p.etats[a], B = p.etats[b];
-      tmpP.lerpVectors(A.pos, B.pos, t);
-      const flottement = (a === 0 && t < 0.5 ? 1 - t * 2 : 0.18) * calmeIci;
+      tmpP.lerpVectors(A.pos, B.pos, u);
       tmpP.x += Math.sin(horloge * p.vitesse + p.phase) * 0.35 * flottement;
       tmpP.y += Math.cos(horloge * p.vitesse * 0.8 + p.phase) * 0.3 * flottement;
-      p.m.position.copy(tmpP);
-      tmpQ.slerpQuaternions(A.rot, B.rot, t);
-      p.m.quaternion.copy(tmpQ);
-      if (a === 0 && t < 0.6) p.m.rotateY(Math.sin(horloge * 0.2 + p.phase) * 0.25 * (1 - t) * calmeIci);
-      p.m.scale.setScalar(A.s + (B.s - A.s) * t);
-      let opacite = (A.o ?? 1) + ((B.o ?? 1) - (A.o ?? 1)) * t;
-      normale.set(0, 0, 1).applyQuaternion(p.m.quaternion);
-      const eclairage = 0.88 + 0.14 * Math.abs(normale.dot(LUMIERE));
-      p.mats[0].color.setScalar(eclairage); p.mats[1].color.setScalar(eclairage * 0.9); p.tranche.color.setScalar(0.8 + 0.2 * Math.abs(normale.dot(LUMIERE)));
-      versCamera.copy(camera.position).sub(p.m.position); const distance = versCamera.length();
-      const u = p.face.userData.u;
-      u.uFlou.value = capture ? 0 : Math.min(1, Math.max(0, (distance - 24) / 14, (11 - distance) / 6));
-      u.uBande.value = 0.85 + normale.x * 2.2 - normale.y * 1.6 + Math.sin(horloge * 0.15 + p.phase) * 0.25 * calmeIci;
-      u.uReflet.value = 0.012 + 0.012 * Math.max(0, normale.dot(LUMIERE));
+      tmpQ.slerpQuaternions(A.rot, B.rot, u);
+      if (a === 0 && u < 0.6) tmpQ.multiply(tour.setFromAxisAngle(AXE_Y, Math.sin(horloge * 0.2 + p.phase) * 0.25 * (1 - u) * calmeIci));
+      let taille = A.s + (B.s - A.s) * u;
       if (entree < 0.999) {
+        /* Une carte naît d'un point, au cœur du logo, et grandit en gagnant sa place */
         const local = Math.min(1, Math.max(0, (entree - p.retard) / 0.5));
         const k = 1 - Math.pow(1 - local, 3);
-        tmpP.set(camera.position.x * 0.2 + centreX * 0.18 + p.depart.x, centreY * 0.3 + p.depart.y, p.depart.z);
-        p.m.position.lerp(tmpP, 1 - k);
-        tmpQ.copy(p.m.quaternion); p.m.quaternion.copy(p.tourbillon).slerp(tmpQ, k);
-        p.m.scale.multiplyScalar(Math.max(0.001, k));
-        opacite *= Math.min(1, local * 2.5);
+        proj.set((camera.position.x + recul) * 0.2 + axeX + p.depart.x, centreY * 0.3 + p.depart.y, p.depart.z);
+        tmpP.lerp(proj, 1 - k);
+        tour.copy(tmpQ); tmpQ.copy(p.tourbillon).slerp(tour, k);
+        taille *= k;
       }
-      for (const mt of p.mats) mt.opacity = opacite;
+      p.lot.lot.setMatrixAt(p.rang, matrice.compose(tmpP, tmpQ, tmpS.setScalar(taille)));
+      normale.set(0, 0, 1).applyQuaternion(tmpQ);
+      /* Son ombre : un peu plus grande qu'elle, juste derrière (du côté opposé à la caméra), décalée à l'opposé de la lumière */
+      const derriere = (versCamera.copy(camera.position).sub(tmpP).dot(normale) >= 0 ? -(EPAISSEUR + 0.016) : 0.016) * taille;
+      proj.copy(normale).multiplyScalar(derriere).add(tmpP); proj.x += 0.035 * taille; proj.y -= 0.055 * taille;
+      ombres.setMatrixAt(p.i, matrice.compose(proj, tmpQ, tmpS.set(p.mod.l * 1.2 * taille, p.mod.h * 1.3 * taille, 1)));
+      const distance = tmpP.distanceTo(camera.position);
+      p.lot.etat.setXYZ(p.rang,
+        normale.dot(LUMIERE),
+        capture ? 0 : Math.min(1, Math.max(0, (distance - 24) / 14, (11 - distance) / 6)),
+        0.85 + normale.x * 2.2 - normale.y * 1.6 + Math.sin(horloge * 0.15 + p.phase) * 0.25 * calmeIci);
     }
+    for (const l of lots) { l.lot.instanceMatrix.needsUpdate = true; l.etat.needsUpdate = true; }
+    ombres.instanceMatrix.needsUpdate = true;
+    /* Dans le désordre, les cartes sont loin les unes des autres : l'ombre reste légère. Rangées, elle se creuse. */
+    ombres.material.uniforms.uOpacite.value = 0.085 + 0.085 * Math.min(1, s);
+    ambiance.material.uniforms.uForce.value = (mobile ? 0.07 : 0.06) * entree * (1 + 0.06 * Math.sin(horloge * 0.5) * calmeIci);
+
     const poids = (k) => Math.max(0, 1 - Math.abs(s - k) * 1.6);
     fils.material.opacity = poids(2) * 0.85;
-    noeud.material.opacity = poids(2);
+    matNoeud.opacity = poids(2);
     anneau.material.opacity = Math.max(0, Math.min(1, (s - 3.3) / 0.7));
     cadre.material.opacity = poids(3);
+    haloMoyeu.material.opacity = poids(2) * 0.6; haloAnneau.material.opacity = anneau.material.opacity * 0.5;
+    fils.visible = noeud.visible = haloMoyeu.visible = poids(2) > 0; anneau.visible = haloAnneau.visible = anneau.material.opacity > 0; cadre.visible = poids(3) > 0;
     anneau.rotation.z = horloge * 0.05 * calmeIci;
     poussiere.rotation.y = horloge * 0.012 * calmeIci; poussiere.position.y = Math.sin(horloge * 0.1) * 0.3 * calmeIci;
-
-    regard.lerp(pointeur, 0.04);
-    camera.position.x = regard.x * (mobile ? 0.4 : 1.4);
-    camera.position.y = -regard.y * (mobile ? 0.3 : 0.9);
-    camera.lookAt(centreX * 0.18, centreY * 0.3, 0);
 
     renderer.render(scene, camera);
 
     for (const e of etiquettes) {
-      const o = poids(e.etat) * fondu * entree;
+      const oe = Math.round(poids(e.etat) * fondu * entree * 1000) / 1000;
+      if (oe === 0 && e.o === 0) continue;
       proj.copy(e.point).project(camera);
-      const x = (proj.x * 0.5 + 0.5) * innerWidth, yy = (-proj.y * 0.5 + 0.5) * innerHeight;
-      e.el.style.transform = `translate(${x.toFixed(1)}px, ${yy.toFixed(1)}px) translate(${e.centre ? '-50%' : e.gauche ? 'calc(-100% + 4px)' : '-4px'}, -50%)`;
-      e.el.style.opacity = o.toFixed(3);
+      e.el.style.transform = `translate(${((proj.x * 0.5 + 0.5) * L).toFixed(1)}px, ${((-proj.y * 0.5 + 0.5) * H).toFixed(1)}px) translate(${e.ancre}, -50%)`;
+      if (oe !== e.o) { e.o = oe; e.el.style.opacity = String(oe); }
     }
 
-    const c = Math.round(s);
-    if (c !== courant) { courant = c; boutonsIndex.forEach((bt, k) => { if (k === c) bt.setAttribute('aria-current', 'step'); else bt.removeAttribute('aria-current'); }); }
-
-    if (visible) requestAnimationFrame(rendre);
+    /* La fluidité passe avant la finesse : sous 45 images par seconde, la scène se dessine un cran moins fin */
+    if (finesse > finesseMin) {
+      if (repos > 0) repos--;
+      else {
+        lenteur = dt > 1 / 45 ? lenteur + 1 : Math.max(0, lenteur - 2);
+        if (lenteur > 24) { finesse = Math.max(finesseMin, finesse - 0.25); renderer.setPixelRatio(finesse); lenteur = 0; repos = 90; }
+      }
+    }
   }
-  document.addEventListener('visibilitychange', () => { visible = !document.hidden; if (visible) { dernier = performance.now(); requestAnimationFrame(rendre); } });
-  if (capture) {
-    racine.classList.add('capture');
-    renderer.setPixelRatio(1);
-    requestAnimationFrame(rendre);
-  } else requestAnimationFrame(rendre);
+  if (capture) racine.classList.add('capture');
+  jd.aChaqueImage(rendre);
 }
 
 </script>

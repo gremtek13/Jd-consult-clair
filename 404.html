@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page introuvable — JD Consult</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f4f4f7">
+<meta name="color-scheme" content="light">
+<!-- Cette page peut être servie à n'importe quelle adresse : ses fichiers se nomment depuis la racine du site -->
+<link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<style>
+@font-face { font-family: "Instrument Serif"; src: url(/assets/fonts/instrument-serif.woff2) format("woff2"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "Geist"; src: url(/assets/fonts/geist.woff2) format("woff2"); font-weight: 300 600; font-display: swap; }
+:root { --nuit: #f4f4f7; --creme: #121218; --creme-doux: #5a5a6a; --or: #2842d6; --sur-or: #ffffff; --marge: clamp(20px, 4.4vw, 72px); --ease-out: cubic-bezier(0.23, 1, 0.32, 1); }
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--nuit); color-scheme: light; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; min-height: 100vh; min-height: 100svh; display: grid; grid-template-rows: auto 1fr; background: var(--nuit); color: var(--creme); font-family: "Geist", system-ui, sans-serif; font-weight: 350; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 2px solid var(--or); outline-offset: 4px; border-radius: 4px; }
+header { padding: 20px var(--marge); }
+header img { display: block; width: 141px; height: auto; }
+main { position: relative; overflow: hidden; display: grid; align-content: center; gap: 24px; padding: 40px var(--marge) 96px; }
+main > :not(svg) { position: relative; z-index: 1; }
+h1 { margin: 0; font-family: "Instrument Serif", Georgia, serif; font-weight: 400; letter-spacing: -0.015em; line-height: 0.98; font-size: clamp(3rem, 1rem + 7vw, 8rem); }
+p { margin: 0; max-width: 40ch; color: var(--creme-doux); text-wrap: pretty; }
+.appel { justify-self: start; position: relative; display: inline-flex; align-items: center; gap: 18px; padding: 6px 6px 6px 26px; border-radius: 999px; text-decoration: none; color: var(--nuit); background: var(--creme); overflow: hidden; isolation: isolate; transition: color 400ms var(--ease-out), transform 140ms var(--ease-out); }
+.appel::before { content: ""; position: absolute; inset: 0; background: var(--or); border-radius: inherit; transform: scaleX(0); transform-origin: right; transition: transform 440ms var(--ease-out); z-index: -1; }
+.appel span { width: 46px; height: 46px; border-radius: 50%; background: var(--or); color: var(--sur-or); display: grid; place-items: center; transition: background-color 400ms ease, color 400ms ease; }
+.appel svg { width: 17px; height: 17px; }
+.appel:active { transform: scale(0.97); }
+@media (hover: hover) and (pointer: fine) {
+  .appel:hover { color: var(--sur-or); }
+  .appel:hover::before { transform: scaleX(1); transform-origin: left; }
+  .appel:hover span { background: var(--sur-or); color: var(--or); }
+}
+.cercle { position: absolute; z-index: 0; width: min(64vw, 820px); right: -12vw; top: 50%; transform: translateY(-50%); }
+.cercle circle { fill: none; stroke: var(--or); stroke-width: 0.35; opacity: 0.55; }
+@media (max-width: 899px) { .cercle { width: 120vw; right: -60vw; } .cercle circle { opacity: 0.3; } }
+@media (prefers-reduced-motion: no-preference) {
+  .cercle circle { stroke-dasharray: 1; stroke-dashoffset: 1; animation: tracer 2400ms cubic-bezier(0.77, 0, 0.175, 1) 200ms forwards; }
+  h1, p, .appel { opacity: 0; animation: paraitre 900ms var(--ease-out) forwards; }
+  p { animation-delay: 120ms; } .appel { animation-delay: 240ms; }
+}
+@keyframes tracer { to { stroke-dashoffset: 0; } }
+@keyframes paraitre { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+<header>
+  <a href="/" aria-label="JD Consult, retour à l’accueil"><img src="/assets/logo-palette.svg" alt="JD Consult" width="141" height="54"></a>
+</header>
+<main>
+  <h1>Cette page<br>n’existe pas.</h1>
+  <p>L’adresse a peut-être changé, ou le lien était incomplet. Tout le site tient sur une seule page&nbsp;: vous y êtes en un clic.</p>
+  <a class="appel" href="/">Revenir à l’accueil <span aria-hidden="true"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span></a>
+  <svg class="cercle" viewBox="0 0 100 100" aria-hidden="true"><circle pathLength="1" cx="50" cy="50" r="46"/></svg>
+</main>
+</body>
+</html>
