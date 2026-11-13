@@ -156,10 +156,10 @@ img { display: block; max-width: 100%; height: auto; }
 /* Un voile fixe posé sur la scène. Il fond ses bords dans la nuit ; et tant que les cartes flottent partout (le
    désordre du début), il retient celles qui passent derrière le texte, qui reste lisible. La scène règle --texte. */
 .voile-scene { pointer-events: none; background: radial-gradient(ellipse 85% 80% at 58% 50%, rgba(244, 244, 247, 0) 55%, rgba(244, 244, 247, 0.6) 100%); }
-.voile-scene::before { content: ""; position: absolute; inset: 0; opacity: var(--texte, 1); will-change: opacity; background: linear-gradient(90deg, rgba(244, 244, 247, 0.84) 0%, rgba(244, 244, 247, 0.64) 26%, rgba(244, 244, 247, 0) 54%); }
+.voile-scene::before { content: ""; position: absolute; inset: 0; opacity: var(--texte, 1); will-change: opacity; background: linear-gradient(90deg, rgba(244, 244, 247, 0.7) 0%, rgba(244, 244, 247, 0.5) 26%, rgba(244, 244, 247, 0) 54%); }
 @media (max-width: 899px) {
   .voile-scene { background: radial-gradient(ellipse 110% 80% at 50% 58%, rgba(244, 244, 247, 0) 55%, rgba(244, 244, 247, 0.6) 100%); }
-  .voile-scene::before { background: linear-gradient(180deg, rgba(244, 244, 247, 0.84) 0%, rgba(244, 244, 247, 0.62) 30%, rgba(244, 244, 247, 0) 52%); }
+  .voile-scene::before { background: linear-gradient(180deg, rgba(244, 244, 247, 0.62) 0%, rgba(244, 244, 247, 0.44) 30%, rgba(244, 244, 247, 0) 52%); }
 }
 .etiquettes { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
 .etiquette {
@@ -225,6 +225,7 @@ main, .index-recit { position: relative; z-index: 2; }
 @media (min-width: 900px) { .ouverture h1 { font-size: clamp(4.5rem, 1rem + 8vw, 9.5rem); } }
 .ouverture .pied { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 32px; margin-top: clamp(28px, 4vh, 48px); }
 .ouverture .chapeau { max-width: 36ch; color: var(--creme); }
+.ouverture h1, .ouverture .chapeau, .ouverture .lien-fleche { text-shadow: 0 0 4px var(--nuit), 0 0 12px var(--nuit), 0 0 24px var(--nuit); }
 .ouverture .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
 .lien-fleche { display: inline-flex; align-items: center; gap: 10px; color: var(--creme); text-decoration: none; font-size: 0.9375rem; padding: 10px 0; }
 .lien-fleche { transition: transform var(--t-press) var(--ease-out); }
@@ -1097,7 +1098,7 @@ if (renderer) {
         '  } else if ( vPartie > 0.5 ) {',                            /* le dos */
         '    diffuseColor.rgb = texture2D( uDos, vMapUv ).rgb * ( 0.84 + 0.16 * lumiere );',
         '  } else {',                                                 /* la face */
-        '    vec3 dessin = texture2D( map, vMapUv, mix( -0.65, 1.8, vEtat.y ) ).rgb;',
+        '    vec3 dessin = texture2D( map, vMapUv, mix( -0.65, 0.9, vEtat.y ) ).rgb;',
         '    float ecart = vMapUv.x * 0.7 + vMapUv.y - vEtat.z;',
         '    diffuseColor.rgb = dessin * ( 0.86 + 0.15 * lumiere ) + vec3( 0.9, 0.94, 1.0 ) * exp( -ecart * ecart * 14.0 ) * ( 0.012 + 0.012 * max( 0.0, nl ) );',
         '  }'].join('\n'));
@@ -1178,13 +1179,13 @@ if (renderer) {
     const mat = new THREE.ShaderMaterial({
       transparent: true, depthWrite: false,
       uniforms: { uOpacite: { value: 0 } },
-      vertexShader: 'varying vec2 vUv;\nvoid main() {\n  vUv = uv;\n  gl_Position = projectionMatrix * modelViewMatrix * instanceMatrix * vec4( position, 1.0 );\n}',
+      vertexShader: 'varying vec2 vUv;\nvarying float vLoin;\nvoid main() {\n  vUv = uv;\n  vec4 vue = modelViewMatrix * instanceMatrix * vec4( position, 1.0 );\n  vLoin = -vue.z;\n  gl_Position = projectionMatrix * vue;\n}',
       fragmentShader: [
-        'uniform float uOpacite;', 'varying vec2 vUv;',
+        'uniform float uOpacite;', 'varying vec2 vUv;', 'varying float vLoin;',
         'void main() {',
         '  vec2 p = abs( vUv - 0.5 ) * 2.0;',
         '  float a = ( 1.0 - smoothstep( 0.6, 1.0, p.x ) ) * ( 1.0 - smoothstep( 0.52, 1.0, p.y ) );',
-        '  gl_FragColor = vec4( 0.09, 0.11, 0.24, a * a * uOpacite );',
+        '  gl_FragColor = vec4( 0.09, 0.11, 0.24, a * a * uOpacite * ( 1.0 - smoothstep( 22.0, 60.0, vLoin ) ) );',
         '}'].join('\n'),
     });
     const lot = new THREE.InstancedMesh(new THREE.PlaneGeometry(1, 1), mat, N);
@@ -1421,7 +1422,7 @@ if (renderer) {
     ombres.instanceMatrix.needsUpdate = true;
     /* Dans le désordre, les cartes sont loin les unes des autres : l'ombre reste légère. Rangées, elle se creuse. */
     ombres.material.uniforms.uOpacite.value = 0.085 + 0.085 * Math.min(1, s);
-    ambiance.material.uniforms.uForce.value = (mobile ? 0.07 : 0.06) * entree * (1 + 0.06 * Math.sin(horloge * 0.5) * calmeIci);
+    ambiance.material.uniforms.uForce.value = (mobile ? 0.034 : 0.04) * entree * (1 + 0.06 * Math.sin(horloge * 0.5) * calmeIci);
 
     const poids = (k) => Math.max(0, 1 - Math.abs(s - k) * 1.6);
     fils.material.opacity = poids(2) * 0.85;
